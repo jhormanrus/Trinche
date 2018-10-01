@@ -3,12 +3,9 @@ package com.trinche.trinch;
 import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.Window;
 
 import com.roughike.bottombar.BottomBar;
-import com.roughike.bottombar.BottomBarBadge;
-import com.roughike.bottombar.OnMenuTabClickListener;
+import com.roughike.bottombar.OnTabSelectListener;
 import com.trinche.trinch.fragments.LOhome;
 import com.trinche.trinch.fragments.LOnotifications;
 import com.trinche.trinch.fragments.LOprofile;
@@ -17,56 +14,32 @@ import com.trinche.trinch.fragments.LOrecipe;
 
 public class MainActivity extends AppCompatActivity {
 
-    BottomBar bottomBar;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
 
-        bottomBar = BottomBar.attach(this, savedInstanceState);
-        bottomBar.setItemsFromMenu(R.menu.menu_bar, new OnMenuTabClickListener() {
+        BottomBar bottomBar = (BottomBar) findViewById(R.id.bottomBar);
+        bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
-            public void onMenuTabSelected(@IdRes int i) {
-                if (i == R.id.navigation_home) {
+            public void onTabSelected(@IdRes int tabId) {
+                if (tabId == R.id.tab_home){
                     LOhome f = new LOhome();
                     getSupportFragmentManager().beginTransaction().replace(R.id.frame, f).commit();
-                } else if (i == R.id.navigation_ranking) {
+                } else if (tabId == R.id.tab_ranking){
                     LOranking f = new LOranking();
                     getSupportFragmentManager().beginTransaction().replace(R.id.frame, f).commit();
-                } else if (i == R.id.navigation_recipe) {
+                } else if (tabId == R.id.tab_recipe){
                     LOrecipe f = new LOrecipe();
                     getSupportFragmentManager().beginTransaction().replace(R.id.frame, f).commit();
-                } else if (i == R.id.navigation_notifications) {
+                } else if (tabId == R.id.tab_notifications){
                     LOnotifications f = new LOnotifications();
                     getSupportFragmentManager().beginTransaction().replace(R.id.frame, f).commit();
-                } else if (i == R.id.navigation_profile) {
+                } else if (tabId == R.id.tab_profile){
                     LOprofile f = new LOprofile();
                     getSupportFragmentManager().beginTransaction().replace(R.id.frame, f).commit();
                 }
             }
-
-            @Override
-            public void onMenuTabReSelected(int menuItemId) {
-
-            }
         });
-
-        bottomBar.mapColorForTab(0, "#FFB475");
-        bottomBar.mapColorForTab(1, "#DFA778");
-        bottomBar.mapColorForTab(2, "#9F8D7D");
-        bottomBar.mapColorForTab(3, "#AF937C");
-        bottomBar.mapColorForTab(4, "#8F867E");
-
-        BottomBarBadge unread;
-        unread = bottomBar.makeBadgeForTabAt(3, "#FF0000", 13);
-        unread.show();
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu (Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_bar, menu);
-        return true;
     }
 }

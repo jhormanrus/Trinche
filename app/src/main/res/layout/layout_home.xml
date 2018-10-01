@@ -11,6 +11,7 @@
         android:id="@+id/easytabs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         easytabs:etab_selected_color="#EF7F1A"
         easytabs:etab_unselected_color="#96989A"
         easytabs:etab_bold_for_selected="true"

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs>
+    <tab
+        id="@+id/tab_home"
+        icon="@mipmap/twotone_home_white_24dp"
+        title="Inicio" />
+    <tab
+        id="@+id/tab_ranking"
+        icon="@mipmap/twotone_stars_white_24dp"
+        title="Ranking" />
+    <tab
+        id="@+id/tab_recipe"
+        icon="@mipmap/twotone_local_pizza_white_24dp"
+        title="Receta" />
+    <tab
+        id="@+id/tab_notifications"
+        icon="@mipmap/twotone_notifications_white_24dp"
+        title="Notificaciones" />
+    <tab
+        id="@+id/tab_profile"
+        icon="@mipmap/twotone_account_circle_white_24dp"
+        title="Perfil" />
+</tabs>
