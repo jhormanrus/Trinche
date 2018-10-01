@@ -9,6 +9,11 @@ import android.view.Window;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.BottomBarBadge;
 import com.roughike.bottombar.OnMenuTabClickListener;
+import com.trinche.trinch.fragments.LOhome;
+import com.trinche.trinch.fragments.LOnotifications;
+import com.trinche.trinch.fragments.LOprofile;
+import com.trinche.trinch.fragments.LOranking;
+import com.trinche.trinch.fragments.LOrecipe;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -49,10 +54,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
         bottomBar.mapColorForTab(0, "#FFB475");
-        bottomBar.mapColorForTab(1, "#C0FF75");
-        bottomBar.mapColorForTab(2, "#7BFF75");
-        bottomBar.mapColorForTab(3, "#75FFB4");
-        bottomBar.mapColorForTab(4, "#75FFF9");
+        bottomBar.mapColorForTab(1, "#DFA778");
+        bottomBar.mapColorForTab(2, "#9F8D7D");
+        bottomBar.mapColorForTab(3, "#AF937C");
+        bottomBar.mapColorForTab(4, "#8F867E");
 
         BottomBarBadge unread;
         unread = bottomBar.makeBadgeForTabAt(3, "#FF0000", 13);
