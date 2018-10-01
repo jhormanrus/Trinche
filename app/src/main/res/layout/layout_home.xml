@@ -1,15 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
+    android:id="@+id/activity_easy_tab_text"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:easytabs="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
+    <com.loicteillard.easytabs.EasyTabs
+        android:id="@+id/easytabs"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="HOME"
-        tools:layout_editor_absoluteX="113dp"
-        tools:layout_editor_absoluteY="175dp" />
+        easytabs:etab_selected_color="#EF7F1A"
+        easytabs:etab_unselected_color="#96989A"
+        easytabs:etab_bold_for_selected="true"
+        easytabs:etab_separators="true">
+
+        <com.loicteillard.easytabs.EasyTabTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="NUEVOS"
+            android:textAllCaps="true" />
+
+        <com.loicteillard.easytabs.EasyTabTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PAISES"
+            android:textAllCaps="true"
+            easytabs:etab_selected_color="#0070B8" />
+
+        <com.loicteillard.easytabs.EasyTabTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CATEGORIAS"
+            android:textAllCaps="true"
+            easytabs:etab_selected_color="#7D2181" />
+
+    </com.loicteillard.easytabs.EasyTabs>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 </LinearLayout>

@@ -1,4 +1,4 @@
-package com.trinche.trinch;
+package com.trinche.trinch.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -7,12 +7,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class LOranking extends Fragment {
+import com.trinche.trinch.R;
+
+public class LOnotifications extends Fragment {
 
     @Nullable
     @Override
     public View onCreateView (LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.layout_ranking, container, false);
+        View v = inflater.inflate(R.layout.layout_notifications, container, false);
         return v;
     }
 }

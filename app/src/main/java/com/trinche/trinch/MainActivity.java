@@ -9,6 +9,11 @@ import android.view.Window;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.BottomBarBadge;
 import com.roughike.bottombar.OnMenuTabClickListener;
+import com.trinche.trinch.fragments.LOhome;
+import com.trinche.trinch.fragments.LOnotifications;
+import com.trinche.trinch.fragments.LOprofile;
+import com.trinche.trinch.fragments.LOranking;
+import com.trinche.trinch.fragments.LOrecipe;
 
 public class MainActivity extends AppCompatActivity {
 
