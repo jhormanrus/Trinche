@@ -36,10 +36,10 @@
                 android:id="@+id/tvLogin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
                 android:fontFamily="@font/f_gloria_hallelujah"
                 android:textStyle="bold"
-                android:text="Login"
+                android:text="Trinché"
+                android:layout_centerHorizontal="true"
                 android:textColor="@color/white"
                 android:textSize="30sp"/>
 
@@ -60,7 +60,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/f_architects_daughter"
-                        android:text="Username"
+                        android:text="Usuario"
                         android:textAllCaps="true"
                         android:textColor="@color/white"
                         android:textSize="15sp"/>
@@ -88,7 +88,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/f_architects_daughter"
-                        android:text="Password"
+                        android:text="Contraseña"
                         android:textAllCaps="true"
                         android:textColor="@color/white"
                         android:textSize="15sp"/>
@@ -120,7 +120,7 @@
                 android:textStyle="bold"
                 android:paddingLeft="70dp"
                 android:paddingRight="70dp"
-                android:text="Enter"
+                android:text="Ingresar"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="18sp"/>
@@ -142,7 +142,7 @@
             android:layout_height="wrap_content"
             android:background="@color/transparent"
             android:fontFamily="@font/f_architects_daughter"
-            android:text="SignUp"
+            android:text="Registrate"
             android:textAllCaps="true"
             android:textColor="@color/white"/>
     </RelativeLayout>
