@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.roughike.bottombar.BottomBar;
+import com.roughike.bottombar.BottomBarTab;
 import com.roughike.bottombar.OnTabSelectListener;
 import com.trinche.trinch.fragments.LOhome;
 import com.trinche.trinch.fragments.LOnotifications;
@@ -19,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        BottomBar bottomBar = (BottomBar) findViewById(R.id.bottomBar);
+        final BottomBar bottomBar = (BottomBar) findViewById(R.id.bottomBar);
         bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
             public void onTabSelected(@IdRes int tabId) {
@@ -33,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
                     LOrecipe f = new LOrecipe();
                     getSupportFragmentManager().beginTransaction().replace(R.id.frame, f).commit();
                 } else if (tabId == R.id.tab_notifications){
+                    BottomBarTab nearby = bottomBar.getTabWithId(R.id.tab_notifications);
+                    nearby.removeBadge();
                     LOnotifications f = new LOnotifications();
                     getSupportFragmentManager().beginTransaction().replace(R.id.frame, f).commit();
                 } else if (tabId == R.id.tab_profile){
@@ -41,5 +44,8 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        BottomBarTab nearby = bottomBar.getTabWithId(R.id.tab_notifications);
+        nearby.setBadgeCount(4);
     }
 }

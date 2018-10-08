@@ -8,12 +8,12 @@ import android.view.ViewGroup;
 
 import com.trinche.trinch.R;
 
-public class RVrecipes extends RecyclerView.Adapter<RVrecipes.ViewHolderRecipes> {
+public class RVranking extends RecyclerView.Adapter<RVranking.ViewHolderRecipes> {
 
     @NonNull
     @Override
     public ViewHolderRecipes onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.tiny_recipresentation, null, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.tiny_recipetop, null, false);
         return new ViewHolderRecipes(view);
     }
 
@@ -24,7 +24,7 @@ public class RVrecipes extends RecyclerView.Adapter<RVrecipes.ViewHolderRecipes>
 
     @Override
     public int getItemCount() {
-        return 10;
+        return 5;
     }
 
     public class ViewHolderRecipes extends RecyclerView.ViewHolder {
