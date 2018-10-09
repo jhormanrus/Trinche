@@ -39,7 +39,7 @@ public class MainRegister extends AppCompatActivity implements View.OnClickListe
                 int mes = c.get(Calendar.MONTH);
                 int ano = c.get(Calendar.YEAR);
 
-                DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+                DatePickerDialog datePickerDialog = new DatePickerDialog(this, R.style.DialogTheme, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         String CERO = "0";

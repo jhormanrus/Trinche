@@ -116,6 +116,7 @@
                 app:cb_pressedRingWidth="10dp" />
 
             <at.markushi.ui.CircleButton
+                android:id="@+id/settingsBTN"
                 android:layout_width="90dp"
                 android:layout_height="90dp"
                 android:src="@mipmap/twotone_settings_white_36dp"
