@@ -9,12 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-<<<<<<< HEAD:app/src/main/java/com/trinche/app/fragments/LOnotifications.java
 import com.trinche.app.R;
-=======
-import com.trinche.trinch.R;
-import com.trinche.trinch.adapters.RVNotifications;
->>>>>>> f99232de286b61048930002b0fe4dc7a37d5ce7a:app/src/main/java/com/trinche/trinch/fragments/LOnotifications.java
+import com.trinche.app.adapters.RVNotifications;
 
 public class LOnotifications extends Fragment {
 

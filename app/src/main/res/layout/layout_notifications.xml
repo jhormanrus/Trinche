@@ -20,7 +20,7 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 app:civ_border_width="0dp"
-                android:src="@drawable/harry"
+                android:src="@mipmap/perfil"
                 android:layout_marginRight="8dp"/>
 
             <LinearLayout
