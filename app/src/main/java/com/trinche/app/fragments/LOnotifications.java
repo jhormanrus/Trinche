@@ -18,7 +18,7 @@ public class LOnotifications extends Fragment {
     @Nullable
     @Override
     public View onCreateView (LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.frag_rv_notif, container, false);
+        View v = inflater.inflate(R.layout.layout_notifications, container, false);
 
         RVNotificacion = (RecyclerView) v.findViewById(R.id.RVNotificacion);
         RVNotificacion.setLayoutManager(new LinearLayoutManager(getContext()));

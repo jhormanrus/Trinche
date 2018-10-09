@@ -13,7 +13,7 @@ public class RVNotifications extends RecyclerView.Adapter<RVNotifications.ViewHo
     @NonNull
     @Override
     public RVNotifications.ViewHolderNotifications onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.layout_notifications, null, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.tiny_notifications, null, false);
         return new RVNotifications.ViewHolderNotifications(view);
     }
 
