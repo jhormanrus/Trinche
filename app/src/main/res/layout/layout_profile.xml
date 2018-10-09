@@ -75,7 +75,8 @@
             <at.markushi.ui.CircleButton
                 android:layout_width="90dp"
                 android:layout_height="90dp"
-                android:src="@mipmap/twotone_receipt_white_36dp"
+                android:src="@drawable/ic_twotone_receipt_24px"
+                android:tint="@color/white"
                 app:cb_color="@color/colorPrimaryDark"
                 app:cb_pressedRingWidth="10dp" />
 

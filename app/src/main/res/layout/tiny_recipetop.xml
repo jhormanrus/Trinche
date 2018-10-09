@@ -51,12 +51,25 @@
                 android:orientation="horizontal"
                 android:layout_margin="6dp">
 
-                <ImageView
-                    android:id="@+id/imageView"
+                <RelativeLayout
                     android:layout_width="130dp"
                     android:layout_height="130dp"
-                    android:background="#999999"
-                    android:layout_marginEnd="6dp"/>
+                    android:layout_marginEnd="6dp">
+
+                    <ImageView
+                        android:id="@+id/imageView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#999999" />
+
+                    <ImageView
+                        android:id="@+id/imageIcon"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        app:srcCompat="@mipmap/medalla"
+                        android:paddingStart="-10dp"
+                        android:paddingTop="2dp"/>
+                </RelativeLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
