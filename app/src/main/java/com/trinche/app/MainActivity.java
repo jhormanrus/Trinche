@@ -48,4 +48,9 @@ public class MainActivity extends AppCompatActivity {
         BottomBarTab nearby = bottomBar.getTabWithId(R.id.tab_notifications);
         nearby.setBadgeCount(4);
     }
+
+    @Override
+    public void onBackPressed() {
+        //
+    }
 }
