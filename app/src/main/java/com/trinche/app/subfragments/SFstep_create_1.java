@@ -1,4 +1,4 @@
-package com.trinche.trinch.subfragments;
+package com.trinche.app.subfragments;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 
 import com.stepstone.stepper.Step;
 import com.stepstone.stepper.VerificationError;
-import com.trinche.trinch.R;
+import com.trinche.app.R;
 
 public class SFstep_create_1 extends Fragment implements Step {
 

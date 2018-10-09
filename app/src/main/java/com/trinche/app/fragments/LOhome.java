@@ -1,4 +1,4 @@
-package com.trinche.trinch.fragments;
+package com.trinche.app.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -7,11 +7,10 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.loicteillard.easytabs.EasyTabs;
-import com.trinche.trinch.R;
-import com.trinche.trinch.adapters.TABhome;
+import com.trinche.app.R;
+import com.trinche.app.adapters.TABhome;
 
 public class LOhome extends Fragment {
 

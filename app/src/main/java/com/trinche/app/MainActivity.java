@@ -1,4 +1,4 @@
-package com.trinche.trinch;
+package com.trinche.app;
 
 import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
@@ -7,11 +7,11 @@ import android.os.Bundle;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.BottomBarTab;
 import com.roughike.bottombar.OnTabSelectListener;
-import com.trinche.trinch.fragments.LOhome;
-import com.trinche.trinch.fragments.LOnotifications;
-import com.trinche.trinch.fragments.LOprofile;
-import com.trinche.trinch.fragments.LOranking;
-import com.trinche.trinch.fragments.LOrecipe;
+import com.trinche.app.fragments.LOhome;
+import com.trinche.app.fragments.LOnotifications;
+import com.trinche.app.fragments.LOprofile;
+import com.trinche.app.fragments.LOranking;
+import com.trinche.app.fragments.LOrecipe;
 
 public class MainActivity extends AppCompatActivity {
 

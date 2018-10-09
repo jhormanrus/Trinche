@@ -1,4 +1,4 @@
-package com.trinche.trinch;
+package com.trinche.app;
 
 import android.content.Intent;
 import android.os.Handler;

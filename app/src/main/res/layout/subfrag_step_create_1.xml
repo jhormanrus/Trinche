@@ -1,13 +1,150 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".subfragments.SFstep_create_1">
+    tools:context="com.trinche.app.subfragments.SFstep_create_1">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="izii" />
+        android:layout_margin="6dp"
+        android:orientation="vertical"
+        android:gravity="center">
 
-</FrameLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/f_architects_daughter"
+                android:text="Descripción"
+                android:textAllCaps="true"
+                android:textColor="#000000"
+                android:textSize="15sp"/>
+
+            <EditText
+                android:id="@+id/usernameET"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/et_b_bg"
+                android:fontFamily="@font/f_architects_daughter"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:textSize="15sp"
+                android:inputType="textMultiLine"
+                android:maxLines="5"
+                android:lines="5"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:layout_marginTop="6dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginEnd="3dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/f_architects_daughter"
+                    android:text="Tiempo"
+                    android:textAllCaps="true"
+                    android:textColor="#000000"
+                    android:textSize="15sp"/>
+
+                <EditText
+                    android:id="@+id/usernameET2"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/et_b_bg"
+                    android:fontFamily="@font/f_architects_daughter"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/f_architects_daughter"
+                    android:text="Categoría"
+                    android:textAllCaps="true"
+                    android:textColor="#000000"
+                    android:textSize="15sp"
+                    android:layout_marginTop="6dp"/>
+
+                <Spinner
+                    android:id="@+id/usernameET3"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/et_b_bg"
+                    android:fontFamily="@font/f_architects_daughter"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginStart="3dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/f_architects_daughter"
+                    android:text="Porciones"
+                    android:textAllCaps="true"
+                    android:textColor="#000000"
+                    android:textSize="15sp"/>
+
+                <EditText
+                    android:id="@+id/usernameET4"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/et_b_bg"
+                    android:fontFamily="@font/f_architects_daughter"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/f_architects_daughter"
+                    android:text="País"
+                    android:textAllCaps="true"
+                    android:textColor="#000000"
+                    android:textSize="15sp"
+                    android:layout_marginTop="6dp"/>
+
+                <Spinner
+                    android:id="@+id/usernameET1"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/et_b_bg"
+                    android:fontFamily="@font/f_architects_daughter"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:textSize="15sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

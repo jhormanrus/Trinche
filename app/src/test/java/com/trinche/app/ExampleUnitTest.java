@@ -1,4 +1,4 @@
-package com.trinche.trinch;
+package com.trinche.app;
 
 import org.junit.Test;
 

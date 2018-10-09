@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:animateLayoutChanges="true"
     android:background="@mipmap/main_background"
-    tools:context=".MainActivity">
+    tools:context="com.trinche.app.MainActivity">
 
     <RelativeLayout
         android:id="@+id/relayAuntent"
@@ -139,8 +139,8 @@
                         android:textColor="@color/white"
                         android:textSize="15sp"/>
 
-                    <EditText
-                        android:id="@+id/passwodET"
+                    <Button
+                        android:id="@+id/create_fechaBTN"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:layout_marginTop="5dp"
@@ -149,8 +149,7 @@
                         android:paddingLeft="15dp"
                         android:paddingRight="15dp"
                         android:textColor="@color/white"
-                        android:textSize="15sp"
-                        android:inputType="date" />
+                        android:textSize="15sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -169,12 +168,13 @@
                         android:textColor="@color/white"
                         android:textSize="15sp"/>
 
-                    <EditText
-                        android:id="@+id/passwordET3"
+                    <Spinner
+                        android:id="@+id/create_genderSN"
+                        android:entries="@array/spinner_gender"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:layout_marginTop="5dp"
-                        android:background="@drawable/et_bg"
+                        android:background="@drawable/spn_bg"
                         android:fontFamily="@font/f_architects_daughter"
                         android:paddingLeft="15dp"
                         android:paddingRight="15dp"
@@ -227,7 +227,7 @@
                     android:textSize="15sp"/>
 
                 <EditText
-                    android:id="@+id/passwodET5"
+                    android:id="@+id/create_correoET"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_marginTop="5dp"
@@ -242,7 +242,7 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/enterBTN"
+            android:id="@+id/registerBTN"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_below="@id/linlayLogin"

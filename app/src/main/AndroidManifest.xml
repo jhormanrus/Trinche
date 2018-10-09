@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.trinche.trinch">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.trinche.app">
 
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
@@ -12,21 +13,28 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".MainLogin"
+        android:theme="@style/AppTheme"
+        tools:replace="android:theme">
+        <activity
+            android:name="com.trinche.app.MainActivity"
+            android:screenOrientation="portrait">
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="http" android:host="www.upeu.edu.pe" android:pathPrefix="/fia" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.trinche.app.MainLogin"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainRegister"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".fragments.LOrecipe"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.trinche.app.MainRegister"
+            android:screenOrientation="portrait" />
     </application>
-
 </manifest>

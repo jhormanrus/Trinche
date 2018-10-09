@@ -1,4 +1,4 @@
-package com.trinche.trinch.adapters;
+package com.trinche.app.adapters;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -9,7 +9,9 @@ import android.support.v4.app.FragmentManager;
 import com.stepstone.stepper.Step;
 import com.stepstone.stepper.adapter.AbstractFragmentStepAdapter;
 import com.stepstone.stepper.viewmodel.StepViewModel;
-import com.trinche.trinch.subfragments.SFstep_create_1;
+import com.trinche.app.subfragments.SFstep_create_1;
+import com.trinche.app.subfragments.SFstep_create_2;
+import com.trinche.app.subfragments.SFstep_create_3;
 
 public class STEPcreate_recipe extends AbstractFragmentStepAdapter {
 
@@ -20,11 +22,21 @@ public class STEPcreate_recipe extends AbstractFragmentStepAdapter {
 
     @Override
     public Step createStep(int position) {
-        final SFstep_create_1 step = new SFstep_create_1();
-        Bundle b = new Bundle();
-        b.putInt("maincra", position);
-        step.setArguments(b);
-        return step;
+        if (position == 0) {
+            final SFstep_create_1 step = new SFstep_create_1();
+            Bundle b = new Bundle();
+            b.putInt("maincra", position);
+            step.setArguments(b);
+            return step;
+        } else if (position == 1) {
+            final SFstep_create_2 step = new SFstep_create_2();
+            return step;
+        } else if (position == 2) {
+            final SFstep_create_3 step = new SFstep_create_3();
+            return step;
+        } else {
+            return null;
+        }
     }
 
     @Override

@@ -6,6 +6,7 @@
     <string name="title_notifications">Notificaciones</string>
     <string name="title_profile">Perfil</string>
     <string name="title_activity_main_register">Sign in</string>
+    <string name="title_activity_sfcountries">SFcountries</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
@@ -20,6 +21,8 @@
         completions."
     </string>
 
-    <string name="title_activity_sfcountries">SFcountries</string>
-
+    <string-array name = "spinner_gender">
+        <item>Masculino</item>
+        <item>Femenino</item>
+    </string-array>
 </resources>

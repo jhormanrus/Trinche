@@ -1,4 +1,4 @@
-package com.trinche.trinch.fragments;
+package com.trinche.app.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,9 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.trinche.trinch.R;
-import com.trinche.trinch.adapters.RVranking;
-import com.trinche.trinch.adapters.RVrecipes;
+import com.trinche.app.R;
+import com.trinche.app.adapters.RVranking;
 
 public class LOranking extends Fragment {
 

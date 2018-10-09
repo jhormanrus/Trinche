@@ -1,4 +1,4 @@
-package com.trinche.trinch.subfragments;
+package com.trinche.app.subfragments;
 
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -9,8 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.trinche.trinch.R;
-import com.trinche.trinch.adapters.RVrecipes;
+import com.trinche.app.adapters.RVrecipes;
+import com.trinche.app.R;
 
 public class SFnews extends Fragment {
 

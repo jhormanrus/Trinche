@@ -1,12 +1,12 @@
-package com.trinche.trinch.adapters;
+package com.trinche.app.adapters;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.trinche.trinch.subfragments.SFcategories;
-import com.trinche.trinch.subfragments.SFcountries;
-import com.trinche.trinch.subfragments.SFnews;
+import com.trinche.app.subfragments.SFcountries;
+import com.trinche.app.subfragments.SFcategories;
+import com.trinche.app.subfragments.SFnews;
 
 public class TABhome extends FragmentStatePagerAdapter {
 
