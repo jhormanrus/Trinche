@@ -12,6 +12,14 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.google.gson.JsonObject;
+import com.tfb.fbtoast.FBToast;
+import com.trinche.app.api.ApiAdapter;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class MainLogin extends AppCompatActivity {
 
     RelativeLayout Login, Signup;
@@ -49,20 +57,43 @@ public class MainLogin extends AppCompatActivity {
     }
 
     private void AUTENTICAR (String username, String password) {
-        if (username.equals("jhor") && password.equals("123")){
-            PREFERENCES(username, password);
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-        } else {
-            Toast.makeText(this, "Usuario o contraseña invalido", Toast.LENGTH_SHORT).show();
-        }
+        final JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("USUARIO", Username.getText().toString());
+        jsonObject.addProperty("CONTRASENA", Password.getText().toString());
+        Call<JsonObject> call = ApiAdapter.getApiService("8000").loginUsuario(jsonObject);
+        call.enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                if (response.isSuccessful()) {
+                    try {
+                        PREFERENCES(response.body().getAsJsonObject().get("TOKEN").toString());
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(intent);
+                        FBToast.successToast(getApplicationContext(),"Logeado correctamente",FBToast.LENGTH_SHORT);
+                    } catch (Exception e) {
+                        System.out.println(e);
+                        if (response.body().getAsJsonObject().get("message").toString().equals("105")) {
+                            FBToast.errorToast(getApplicationContext(),"Usuario inválido",FBToast.LENGTH_SHORT);
+                        } else if (response.body().getAsJsonObject().get("message").toString().equals("106")) {
+                            FBToast.errorToast(getApplicationContext(),"Contraseña inválida",FBToast.LENGTH_SHORT);
+                        }
+                    }
+                } else {
+                    FBToast.errorToast(getApplicationContext(),"Error inesperado",FBToast.LENGTH_SHORT);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+                FBToast.errorToast(getApplicationContext(),"Error: " + t.getLocalizedMessage(),FBToast.LENGTH_SHORT);
+            }
+        });
     }
 
-    private void PREFERENCES (String username, String password) {
+    private void PREFERENCES (String TOKEN) {
         SharedPreferences sharedPreferences = getSharedPreferences("login_preferences", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("username", username);
-        editor.putString("password", password);
+        editor.putString("TOKEN", TOKEN);
         editor.apply();
     }
 

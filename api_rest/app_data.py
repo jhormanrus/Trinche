@@ -31,8 +31,8 @@ def user_create():
     con = cx_Oracle.connect(bd)
     cur = con.cursor()
     hashed_password = generate_password_hash(data['CONTRASENA'], method='sha256')
-    sql = 'INSERT INTO USUARIO (ID_USUARIO, USUARIO, CONTRASENA, NOM_AP, CORREO, FECHA_NAC, GENERO, ROL, ID_PAIS) VALUES (:1, :2, :3, :4, :5, :6, :7, :8, :9)'
-    cur.execute(sql, (data['ID_USUARIO'], data['USUARIO'], hashed_password, data['NOM_AP'], data['CORREO'], data['FECHA_NAC'], data['GENERO'], '1', data['ID_PAIS']))
+    sql = 'INSERT INTO USUARIO (USUARIO, CONTRASENA, NOM_AP, CORREO, FECHA_NAC, GENERO, ROL, ID_PAIS) VALUES (:1, :2, :3, :4, :5, :6, :7, :8)'
+    cur.execute(sql, (data['USUARIO'], hashed_password, data['NOM_AP'], data['CORREO'], data['FECHA_NAC'], data['GENERO'], '1', data['ID_PAIS']))
     con.commit()
     cur.close()
     con.close()
@@ -87,10 +87,22 @@ def user_login():
     cur.close()
     con.close()
     
+    try:
+        json_data[0]['CONTRASENA']
+    except:
+        return jsonify({'message': 105})
+    
     if check_password_hash(json_data[0]['CONTRASENA'], data['CONTRASENA']):
         token = jwt.encode({'usuario' : data['USUARIO'], 'exp' : datetime.datetime.utcnow() + datetime.timedelta(minutes=10)}, app.config['SECRET_KEY'])
+        
+        con = cx_Oracle.connect(bd)
+        cur = con.cursor()
+        cur.execute("UPDATE USUARIO SET TOKEN = '" + token + "' WHERE USUARIO = '" + data['USUARIO'] + "'")
+        con.commit()
+        cur.close()
+        con.close()
         return jsonify({'TOKEN': token})
-    return make_response('Could not verify!', 401, {'WWW-Authenticate' : 'Basic realm="Login Required"'})
+    return jsonify({'message': 106})
 
 ###################################################################################################
 

@@ -63,13 +63,12 @@ public class MainRegister extends AppCompatActivity implements View.OnClickListe
             case R.id.registerBTN:
                 if (validateTor.isEmail(create_correoET.getText().toString())){
                     final JsonObject jsonObject = new JsonObject();
-                    jsonObject.addProperty("ID_USUARIO", "3");
                     jsonObject.addProperty("USUARIO", create_usuarioET.getText().toString());
                     jsonObject.addProperty("CONTRASENA", create_contrasenaET.getText().toString());
                     jsonObject.addProperty("NOM_AP", create_nom_apET.getText().toString());
                     jsonObject.addProperty("CORREO", create_correoET.getText().toString());
                     jsonObject.addProperty("FECHA_NAC", create_fechaBTN.getText().toString());
-                    jsonObject.addProperty("GENERO", "2");
+                    jsonObject.addProperty("GENERO", create_genderSN.getSelectedItemPosition());
                     jsonObject.addProperty("ID_PAIS", create_paisET.getText().toString());
                     Call<JsonObject> call = ApiAdapter.getApiService("8000").createUsuario(jsonObject);
                     call.enqueue(new Callback<JsonObject>() {
