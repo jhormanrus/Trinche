@@ -2,7 +2,7 @@ import os
 from flask import Flask, request, redirect, url_for, flash, send_from_directory
 from werkzeug.utils import secure_filename
 
-UPLOAD_FOLDER = 'file'
+UPLOAD_FOLDER = '..\..\File'
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 
 app = Flask(__name__)
@@ -53,5 +53,9 @@ def upload_files():
 def uploaded_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
+@app.route('/countries/image/<filename>')
+def countries_image(filename):
+    return send_from_directory(app.config['UPLOAD_FOLDER']+'\countries', filename)
+
 if __name__ == "__main__":
-    app.run(debug=True, host='0.0.0.0', port=8000)
+    app.run(debug=True, host='10.147.19.237', port=8001)
