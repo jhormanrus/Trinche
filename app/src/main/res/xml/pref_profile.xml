@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="Cuenta">
+        <Preference
+            android:title="Modificar perfil"
+            android:summary="Edita tu foto y datos personales"
+            android:icon="@drawable/ic_twotone_account_circle_48px"
+            android:key="update_profilePFR" />
+
+        <Preference
+            android:title="Cerrar sesión"
+            android:summary="Termina tu sesión de usuario"
+            android:key="close_sessionPFR" />
+
+        <Preference
+            android:title="Eliminar cuenta"
+            android:summary="Elimina tu cuenta permanentemente"
+            android:key="delete_accountPFR" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Preferencias">
+        <Preference
+            android:title="Seleccionar Idioma"
+            android:summary="Español (Perú)"
+            android:selectable="false" />
+
+        <SwitchPreference
+            android:title="Notificaciones"
+            android:summary="Activar notificaciones"
+            android:key="switch_notificationsPFR"
+            android:defaultValue="true"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Acerca de">
+        <Preference
+            android:selectable="false"
+            android:summary="Nosotros somos lorem ipsum." />
+
+        <Preference
+            android:title="Versión"
+            android:summary="alpha 1.0"
+            android:selectable="false"/>
+    </PreferenceCategory>
+</PreferenceScreen>

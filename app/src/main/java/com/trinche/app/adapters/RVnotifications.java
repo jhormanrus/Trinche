@@ -8,17 +8,17 @@ import android.view.ViewGroup;
 
 import com.trinche.app.R;
 
-public class RVNotifications extends RecyclerView.Adapter<RVNotifications.ViewHolderNotifications> {
+public class RVnotifications extends RecyclerView.Adapter<RVnotifications.ViewHolderNotifications> {
 
     @NonNull
     @Override
-    public RVNotifications.ViewHolderNotifications onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public RVnotifications.ViewHolderNotifications onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.tiny_notifications, null, false);
-        return new RVNotifications.ViewHolderNotifications(view);
+        return new RVnotifications.ViewHolderNotifications(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RVNotifications.ViewHolderNotifications viewHolderNotifications, int i) {
+    public void onBindViewHolder(@NonNull RVnotifications.ViewHolderNotifications viewHolderNotifications, int i) {
 
     }
 

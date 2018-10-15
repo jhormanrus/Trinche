@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.trinche.app.R;
-import com.trinche.app.adapters.RVNotifications;
+import com.trinche.app.adapters.RVnotifications;
 
 public class LOnotifications extends Fragment {
 
@@ -23,7 +23,7 @@ public class LOnotifications extends Fragment {
         RVNotificacion = (RecyclerView) v.findViewById(R.id.RVNotificacion);
         RVNotificacion.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        RVNotifications adapterNotifications = new RVNotifications();
+        RVnotifications adapterNotifications = new RVnotifications();
         RVNotificacion.setAdapter(adapterNotifications);
         return v;
     }

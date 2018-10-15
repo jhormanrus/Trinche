@@ -10,17 +10,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
+import com.awesome.shorty.AwesomeToast;
 import com.google.gson.JsonObject;
-import com.tfb.fbtoast.FBToast;
 import com.trinche.app.api.ApiAdapter;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainLogin extends AppCompatActivity {
+public class MainLogin extends AppCompatActivity implements View.OnClickListener {
 
     RelativeLayout Login, Signup;
     EditText Username, Password;
@@ -35,28 +34,30 @@ public class MainLogin extends AppCompatActivity {
         handler.postDelayed(runnable, 2000);
 
         SharedPreferences sharedPreferences = getSharedPreferences("login_preferences", Context.MODE_PRIVATE);
-        if (!sharedPreferences.getString("username", "").equals("") && !sharedPreferences.getString("password", "").equals("")){
+        if (!sharedPreferences.getString("TOKEN", "").equals("")){
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        } else {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         }
-
-        Enter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AUTENTICAR(Username.getText().toString(), Password.getText().toString());
-            }
-        });
-
-        Register.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainLogin.this, MainRegister.class);
-                startActivity(intent);
-            }
-        });
     }
 
-    private void AUTENTICAR (String username, String password) {
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.enterBTN:
+                AUTENTICAR();
+                break;
+
+            case R.id.signupBTN:
+                Intent intent = new Intent(MainLogin.this, MainRegister.class);
+                startActivity(intent);
+                break;
+        }
+    }
+
+    private void AUTENTICAR () {
         final JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("USUARIO", Username.getText().toString());
         jsonObject.addProperty("CONTRASENA", Password.getText().toString());
@@ -69,23 +70,23 @@ public class MainLogin extends AppCompatActivity {
                         PREFERENCES(response.body().getAsJsonObject().get("TOKEN").toString());
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                         startActivity(intent);
-                        FBToast.successToast(getApplicationContext(),"Logeado correctamente",FBToast.LENGTH_SHORT);
+                        AwesomeToast.INSTANCE.success(getApplicationContext(), "Logeado correctamente").show();
                     } catch (Exception e) {
                         System.out.println(e);
                         if (response.body().getAsJsonObject().get("message").toString().equals("105")) {
-                            FBToast.errorToast(getApplicationContext(),"Usuario inválido",FBToast.LENGTH_SHORT);
+                            AwesomeToast.INSTANCE.warning(getApplicationContext(),  "Usuario inválido").show();
                         } else if (response.body().getAsJsonObject().get("message").toString().equals("106")) {
-                            FBToast.errorToast(getApplicationContext(),"Contraseña inválida",FBToast.LENGTH_SHORT);
+                            AwesomeToast.INSTANCE.warning(getApplicationContext(),  "Contraseña inválida").show();
                         }
                     }
                 } else {
-                    FBToast.errorToast(getApplicationContext(),"Error inesperado",FBToast.LENGTH_SHORT);
+                    AwesomeToast.INSTANCE.error(getApplicationContext(),  "Error inesperado").show();
                 }
             }
 
             @Override
             public void onFailure(Call<JsonObject> call, Throwable t) {
-                FBToast.errorToast(getApplicationContext(),"Error: " + t.getLocalizedMessage(),FBToast.LENGTH_SHORT);
+                AwesomeToast.INSTANCE.error(getApplicationContext(),  "Error: " + t.getLocalizedMessage()).show();
             }
         });
     }
@@ -103,7 +104,9 @@ public class MainLogin extends AppCompatActivity {
         Username = (EditText) findViewById(R.id.usernameET);
         Password = (EditText) findViewById(R.id.passwordET);
         Enter = (Button) findViewById(R.id.enterBTN);
+        Enter.setOnClickListener(this);
         Register = (Button) findViewById(R.id.signupBTN);
+        Register.setOnClickListener(this);
     }
 
     Handler handler = new Handler();

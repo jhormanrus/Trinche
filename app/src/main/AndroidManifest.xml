@@ -16,25 +16,45 @@
         android:theme="@style/AppTheme"
         tools:replace="android:theme">
         <activity
-            android:name="com.trinche.app.MainActivity"
+            android:name=".MainActivity"
             android:screenOrientation="portrait">
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="http" android:host="www.upeu.edu.pe" android:pathPrefix="/fia" />
+
+                <data
+                    android:host="www.upeu.edu.pe"
+                    android:pathPrefix="/fia"
+                    android:scheme="http" />
             </intent-filter>
         </activity>
         <activity
-            android:name="com.trinche.app.MainLogin"
+            android:name=".MainLogin"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name="com.trinche.app.MainRegister"
+            android:name=".MainRegister"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".MainSetting"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.APPLICATION_PREFERENCES" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".SettingProfile"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".OptionRecipes"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".OptionBooks"
+            android:screenOrientation="portrait"/>
     </application>
+
 </manifest>

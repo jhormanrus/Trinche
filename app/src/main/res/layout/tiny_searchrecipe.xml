@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.mancj.materialsearchbar.MaterialSearchBar
+        android:id="@+id/search_recipeMSB"
+        app:mt_hint="Buscar receta"
+        app:mt_maxSuggestionsCount="10"
+        app:mt_placeholder="Receta"
+        app:mt_searchBarColor="#efefef"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>

@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.BottomBarTab;
+import com.roughike.bottombar.OnTabReselectListener;
 import com.roughike.bottombar.OnTabSelectListener;
 import com.trinche.app.fragments.LOhome;
 import com.trinche.app.fragments.LOnotifications;
@@ -41,6 +42,16 @@ public class MainActivity extends AppCompatActivity {
                 } else if (tabId == R.id.tab_profile){
                     LOprofile f = new LOprofile();
                     getSupportFragmentManager().beginTransaction().replace(R.id.frame, f).commit();
+                }
+            }
+        });
+        bottomBar.setOnTabReselectListener(new OnTabReselectListener() {
+            @Override
+            public void onTabReSelected(int tabId) {
+                if (tabId == R.id.tab_recipe) {
+                    LOrecipe f = new LOrecipe();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.frame, f).commit();
+                    System.out.println("pi");
                 }
             }
         });

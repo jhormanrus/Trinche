@@ -21,7 +21,10 @@
         completions."
     </string>
 
-    <string-array name = "spinner_gender">
+    <string name="nom_ap">Corki</string>
+    <string name="usuario">"@corki"</string>
+
+    <string-array name="spinner_gender">
         <item>Masculino</item>
         <item>Femenino</item>
     </string-array>

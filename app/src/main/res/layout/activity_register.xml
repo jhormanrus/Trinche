@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:animateLayoutChanges="true"
     android:background="@mipmap/main_background"
     tools:context="com.trinche.app.MainActivity">
@@ -241,14 +242,13 @@
             </LinearLayout>
         </LinearLayout>
 
-        <Button
-            android:id="@+id/registerBTN"
+        <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
+            android:id="@+id/registerCPB"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_below="@id/linlayLogin"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
-            android:background="@drawable/btn_bg"
             android:fontFamily="@font/f_gloria_hallelujah"
             android:textStyle="bold"
             android:paddingLeft="70dp"
@@ -256,7 +256,13 @@
             android:text="Registrarse"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            android:textSize="18sp"/>
+            android:textSize="18sp"
+            android:background="@drawable/btn_bg"
+            app:spinning_bar_width="4dp"
+            app:spinning_bar_color="#FFF"
+            app:spinning_bar_padding="4dp"
+            app:initialCornerAngle="20dp"
+            app:finalCornerAngle="20dp"/>
     </RelativeLayout>
 
     <RelativeLayout
