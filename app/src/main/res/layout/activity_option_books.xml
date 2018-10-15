@@ -1,14 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.trinche.app.OptionBooks">
+    android:orientation="vertical"
+    tools:context="com.trinche.app.subfragments.SFnews">
 
     <TextView
-        android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="OPTION BOOKS" />
-</android.support.constraint.ConstraintLayout>
+        android:fontFamily="@font/f_architects_daughter"
+        android:text="Mis libros"
+        android:textAllCaps="true"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="6dp" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/RVoptionBooks"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>

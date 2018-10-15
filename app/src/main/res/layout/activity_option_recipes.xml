@@ -1,14 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.trinche.app.OptionRecipes">
+    android:orientation="vertical"
+    tools:context="com.trinche.app.subfragments.SFnews">
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/layoutTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="OPTION RECIPES" />
-</android.support.constraint.ConstraintLayout>
+        android:fontFamily="@font/f_architects_daughter"
+        android:text="Mis recetas"
+        android:textAllCaps="true"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="6dp"
+        android:visibility="gone"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/RVlayoutCustom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>

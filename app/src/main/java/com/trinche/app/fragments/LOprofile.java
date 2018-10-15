@@ -42,6 +42,7 @@ public class LOprofile extends Fragment implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.show_recipeCBT:
                 Intent intent1 = new Intent(getActivity(), OptionRecipes.class);
+                intent1.putExtra("type", "1");
                 startActivity(intent1);
                 break;
 
@@ -107,6 +108,7 @@ public class LOprofile extends Fragment implements View.OnClickListener {
     class CustomAdapter extends BaseAdapter {
 
         int type;
+        // 1 = followers | 2 = following
 
         CustomAdapter(int type) {
             this.type = type;
