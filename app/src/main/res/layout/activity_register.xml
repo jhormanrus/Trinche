@@ -135,7 +135,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/f_architects_daughter"
-                        android:text="Fecha"
+                        android:text="Nacimiento"
                         android:textAllCaps="true"
                         android:textColor="@color/white"
                         android:textSize="15sp"/>

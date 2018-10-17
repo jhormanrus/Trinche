@@ -15,8 +15,7 @@ import com.trinche.app.subfragments.SFstep_create_3;
 
 public class STEPcreate_recipe extends AbstractFragmentStepAdapter {
 
-
-    public STEPcreate_recipe(FragmentManager fm, Context context) {
+    public STEPcreate_recipe(@NonNull FragmentManager fm, @NonNull Context context) {
         super(fm, context);
     }
 
