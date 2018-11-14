@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_marginStart="20dp"
+    android:layout_marginEnd="20dp"
+    android:layout_marginBottom="10dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nombre del paso"
+        android:textAllCaps="true"
+        android:textSize="15sp"/>
+
+    <EditText
+        android:id="@+id/name_stepET"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/et_b_bg"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:textSize="15sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Descripción"
+        android:textAllCaps="true"
+        android:textSize="15sp"/>
+
+    <EditText
+        android:id="@+id/desciption_stepET"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/et_b_bg"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:textSize="15sp"
+        android:inputType="textMultiLine"
+        android:maxLines="4"
+        android:lines="4"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="10dp"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/create_stepIV"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:scaleType="centerCrop"
+            android:background="#999999" />
+
+        <Button
+            android:id="@+id/create_stepBTN"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/btn_b_bg"
+            android:fontFamily="@font/f_gloria_hallelujah"
+            android:text="Subir foto"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:textAllCaps="false"
+            android:layout_gravity="center_vertical"/>
+    </LinearLayout>
+
+    <com.mancj.materialsearchbar.MaterialSearchBar
+        android:id="@+id/search_ingredientMSB"
+        app:mt_hint="Buscar ingrediente"
+        app:mt_maxSuggestionsCount="5"
+        app:mt_placeholder="Ingrediente"
+        app:mt_searchBarColor="#efefef"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_marginTop="2dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="*Por favor, añada y elimine sus ingredientes antes de agregar el peso de cada uno."/>
+
+    <ListView
+        android:id="@+id/ingredientsLV"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="500dp" />
+
+    <Button
+        android:id="@+id/add_stepBTN"
+        android:layout_gravity="bottom|end"
+        android:layout_width="wrap_content"
+        android:layout_height="34dp"
+        android:text="Guardar"
+        android:clickable="true"
+        android:focusable="true"
+        android:textColor="@color/colorPrimary"
+        android:background="@color/transparent"
+        android:foreground="?android:attr/selectableItemBackground"/>
+</LinearLayout>

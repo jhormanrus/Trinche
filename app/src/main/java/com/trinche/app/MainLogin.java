@@ -15,6 +15,7 @@ import com.awesome.shorty.AwesomeToast;
 import com.google.gson.JsonObject;
 import com.trinche.app.api.ApiAdapter;
 
+import br.com.simplepass.loading_button_lib.customViews.CircularProgressButton;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -23,7 +24,8 @@ public class MainLogin extends AppCompatActivity implements View.OnClickListener
 
     RelativeLayout Login, Signup;
     EditText Username, Password;
-    Button Enter, Register;
+    Button Register;
+    CircularProgressButton Enter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,14 +34,30 @@ public class MainLogin extends AppCompatActivity implements View.OnClickListener
 
         init();
         handler.postDelayed(runnable, 2000);
+        validate();
+    }
 
+    private void validate() {
         SharedPreferences sharedPreferences = getSharedPreferences("login_preferences", Context.MODE_PRIVATE);
-        if (!sharedPreferences.getString("TOKEN", "").equals("")){
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-        } else {
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
+        String TOKEN = sharedPreferences.getString("TOKEN", "");
+        if (!TOKEN.equals("")){
+            Call<JsonObject> call = ApiAdapter.getApiService().validateUsuario(TOKEN);
+            call.enqueue(new Callback<JsonObject>() {
+                @Override
+                public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                    if (response.isSuccessful()) {
+                        if (response.body().getAsJsonObject().get("message").toString().equals("1")) {
+                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                            startActivity(intent);
+                        }
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<JsonObject> call, Throwable t) {
+                    AwesomeToast.INSTANCE.error(getApplicationContext(),  "Error: " + t.getLocalizedMessage()).show();
+                }
+            });
         }
     }
 
@@ -47,6 +65,7 @@ public class MainLogin extends AppCompatActivity implements View.OnClickListener
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.enterBTN:
+                Enter.startAnimation();
                 AUTENTICAR();
                 break;
 
@@ -61,13 +80,14 @@ public class MainLogin extends AppCompatActivity implements View.OnClickListener
         final JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("USUARIO", Username.getText().toString());
         jsonObject.addProperty("CONTRASENA", Password.getText().toString());
-        Call<JsonObject> call = ApiAdapter.getApiService("8000").loginUsuario(jsonObject);
+        Call<JsonObject> call = ApiAdapter.getApiService().loginUsuario(jsonObject);
         call.enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 if (response.isSuccessful()) {
                     try {
-                        PREFERENCES(response.body().getAsJsonObject().get("TOKEN").toString());
+                        JsonObject result = response.body().getAsJsonObject();
+                        PREFERENCES(result.get("ID_USUARIO").getAsString(), result.get("TOKEN").getAsString());
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                         startActivity(intent);
                         AwesomeToast.INSTANCE.success(getApplicationContext(), "Logeado correctamente").show();
@@ -82,18 +102,21 @@ public class MainLogin extends AppCompatActivity implements View.OnClickListener
                 } else {
                     AwesomeToast.INSTANCE.error(getApplicationContext(),  "Error inesperado").show();
                 }
+                Enter.revertAnimation();
             }
 
             @Override
             public void onFailure(Call<JsonObject> call, Throwable t) {
                 AwesomeToast.INSTANCE.error(getApplicationContext(),  "Error: " + t.getLocalizedMessage()).show();
+                Enter.revertAnimation();
             }
         });
     }
 
-    private void PREFERENCES (String TOKEN) {
+    private void PREFERENCES (String ID_USUARIO, String TOKEN) {
         SharedPreferences sharedPreferences = getSharedPreferences("login_preferences", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("ID_USUARIO", ID_USUARIO);
         editor.putString("TOKEN", TOKEN);
         editor.apply();
     }
@@ -103,7 +126,7 @@ public class MainLogin extends AppCompatActivity implements View.OnClickListener
         Signup = (RelativeLayout) findViewById(R.id.relaySignup);
         Username = (EditText) findViewById(R.id.usernameET);
         Password = (EditText) findViewById(R.id.passwordET);
-        Enter = (Button) findViewById(R.id.enterBTN);
+        Enter = (CircularProgressButton) findViewById(R.id.enterBTN);
         Enter.setOnClickListener(this);
         Register = (Button) findViewById(R.id.signupBTN);
         Register.setOnClickListener(this);

@@ -3,146 +3,238 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@mipmap/main_background"
+    android:gravity="center"
     tools:context="com.trinche.app.subfragments.SFstep_create_1">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="6dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/f_architects_daughter"
-                android:text="Descripción"
-                android:textAllCaps="true"
-                android:textColor="#000000"
-                android:textSize="15sp"/>
+            <ImageView
+                android:id="@+id/create_imageIV"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:background="#999999"
+                android:scaleType="centerCrop"
+                android:layout_margin="6dp" />
 
-            <EditText
-                android:id="@+id/usernameET"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/et_b_bg"
-                android:fontFamily="@font/f_architects_daughter"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                android:textSize="15sp"
-                android:inputType="textMultiLine"
-                android:maxLines="5"
-                android:lines="5"/>
+                android:layout_height="match_parent"
+                android:layout_marginEnd="6dp"
+                android:gravity="center">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/f_architects_daughter"
+                        android:text="Nombre de receta"
+                        android:textAllCaps="true"
+                        android:textColor="@color/white"
+                        android:textSize="15sp" />
+
+                    <EditText
+                        android:id="@+id/create_nom_reET"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/et_bg"
+                        android:textCursorDrawable="@drawable/cur_cor_w"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"/>
+
+                    <LinearLayout
+                        android:layout_marginTop="6dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+
+                        <Button
+                            android:id="@+id/create_imageBTN"
+                            android:layout_width="wrap_content"
+                            android:layout_height="35dp"
+                            android:background="@drawable/btn_bg"
+                            android:fontFamily="@font/f_gloria_hallelujah"
+                            android:text="Subir foto"
+                            android:paddingLeft="20dp"
+                            android:paddingRight="20dp"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white" />
+
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/btn_b_bg"
+                            android:fontFamily="@font/f_gloria_hallelujah"
+                            android:text="Crear receta"
+                            android:paddingLeft="20dp"
+                            android:paddingRight="20dp"
+                            android:visibility="gone"
+                            android:textAllCaps="false"
+                            android:textColor="#000000"
+                            android:textSize="15sp"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="2"
-            android:layout_marginTop="6dp">
+            android:layout_height="match_parent"
+            android:layout_margin="6dp"
+            android:orientation="vertical">
 
             <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:layout_marginEnd="3dp">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/f_architects_daughter"
-                    android:text="Tiempo"
+                    android:text="Descripción"
                     android:textAllCaps="true"
-                    android:textColor="#000000"
+                    android:textColor="@color/white"
                     android:textSize="15sp"/>
 
                 <EditText
-                    android:id="@+id/usernameET2"
+                    android:id="@+id/create_descriptionET"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="120dp"
                     android:layout_marginTop="5dp"
-                    android:background="@drawable/et_b_bg"
-                    android:fontFamily="@font/f_architects_daughter"
+                    android:background="@drawable/et_bg"
+                    android:textCursorDrawable="@drawable/cur_cor_w"
                     android:paddingLeft="15dp"
                     android:paddingRight="15dp"
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/f_architects_daughter"
-                    android:text="Categoría"
-                    android:textAllCaps="true"
-                    android:textColor="#000000"
+                    android:textColor="@color/white"
                     android:textSize="15sp"
-                    android:layout_marginTop="6dp"/>
-
-                <Spinner
-                    android:id="@+id/usernameET3"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/et_b_bg"
-                    android:fontFamily="@font/f_architects_daughter"
-                    android:paddingLeft="15dp"
-                    android:paddingRight="15dp"
-                    android:textSize="15sp" />
+                    android:inputType="textMultiLine"
+                    android:maxLines="5"
+                    android:lines="5"/>
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:layout_marginStart="3dp">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                android:layout_marginTop="6dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/f_architects_daughter"
-                    android:text="Porciones"
-                    android:textAllCaps="true"
-                    android:textColor="#000000"
-                    android:textSize="15sp"/>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginEnd="3dp">
 
-                <EditText
-                    android:id="@+id/usernameET4"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/et_b_bg"
-                    android:fontFamily="@font/f_architects_daughter"
-                    android:paddingLeft="15dp"
-                    android:paddingRight="15dp"
-                    android:textSize="15sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/f_architects_daughter"
+                        android:text="Tiempo"
+                        android:textAllCaps="true"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/f_architects_daughter"
-                    android:text="País"
-                    android:textAllCaps="true"
-                    android:textColor="#000000"
-                    android:textSize="15sp"
-                    android:layout_marginTop="6dp"/>
+                    <EditText
+                        android:id="@+id/create_timeET"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/et_bg"
+                        android:textCursorDrawable="@drawable/cur_cor_w"
+                        android:textColor="@color/white"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp"
+                        android:textSize="15sp" />
 
-                <Spinner
-                    android:id="@+id/usernameET1"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/et_b_bg"
-                    android:fontFamily="@font/f_architects_daughter"
-                    android:paddingLeft="15dp"
-                    android:paddingRight="15dp"
-                    android:textSize="15sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/f_architects_daughter"
+                        android:text="Categoría"
+                        android:textAllCaps="true"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        android:layout_marginTop="6dp"/>
+
+                    <Spinner
+                        android:id="@+id/re_categorySN"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/et_bg"
+                        android:textColor="@color/white"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginStart="3dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/f_architects_daughter"
+                        android:text="Porciones"
+                        android:textAllCaps="true"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"/>
+
+                    <EditText
+                        android:id="@+id/create_portionsET"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/et_bg"
+                        android:textCursorDrawable="@drawable/cur_cor_w"
+                        android:textColor="@color/white"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/f_architects_daughter"
+                        android:text="País"
+                        android:textAllCaps="true"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        android:layout_marginTop="6dp"/>
+
+                    <Spinner
+                        android:id="@+id/re_countrySN"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/et_bg"
+                        android:textColor="@color/white"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp"
+                        android:textSize="15sp" />
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

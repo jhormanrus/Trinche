@@ -24,12 +24,13 @@
             android:gravity="center">
 
             <ImageView
-                android:src="@mipmap/countrie_bolivia"
+                android:id="@+id/image_countryTV"
                 android:layout_width="48dp"
-                android:layout_height="wrap_content"
+                android:layout_height="32dp"
                 android:layout_margin="6dp"/>
 
             <TextView
+                android:id="@+id/name_countryTV"
                 android:text="countrie"
                 android:textAlignment="center"
                 android:textSize="18sp"

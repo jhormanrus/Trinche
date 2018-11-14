@@ -6,14 +6,14 @@ import com.google.gson.GsonBuilder;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class ApiAdapter {
+public class ImageAdapter {
 
     private static ApiService API_SERVICE;
 
     public static ApiService getApiService() {
 
-        String api_url = "http://104.197.2.172:8750/";
-        //String api_url = "http://10.147.19.237:8000/";
+        String api_url = "http://104.197.2.172:8760/";
+        //String api_url = "http://10.147.19.237:8001/";
         Gson gson = new GsonBuilder().setLenient().create();
 
         if (API_SERVICE == null) {

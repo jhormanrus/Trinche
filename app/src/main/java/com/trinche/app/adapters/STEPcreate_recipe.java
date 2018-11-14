@@ -1,7 +1,6 @@
 package com.trinche.app.adapters;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.support.annotation.IntRange;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
@@ -21,39 +20,42 @@ public class STEPcreate_recipe extends AbstractFragmentStepAdapter {
 
     @Override
     public Step createStep(int position) {
-        if (position == 0) {
-            final SFstep_create_1 step = new SFstep_create_1();
-            Bundle b = new Bundle();
-            b.putInt("maincra", position);
-            step.setArguments(b);
-            return step;
-        } else if (position == 1) {
-            final SFstep_create_2 step = new SFstep_create_2();
-            return step;
-        } else if (position == 2) {
-            final SFstep_create_3 step = new SFstep_create_3();
-            return step;
-        } else {
-            return null;
+        switch (position) {
+            case 0: {
+                final SFstep_create_1 step = new SFstep_create_1();
+                /*Bundle b = new Bundle();
+                b.putInt("maincra", position);
+                step.setArguments(b);*/
+                return step;
+            }
+            case 1: {
+                final SFstep_create_2 step = new SFstep_create_2();
+                return step;
+            }
+            case 2: {
+                final SFstep_create_3 step = new SFstep_create_3();
+                return step;
+            }
         }
+        return null;
     }
 
     @Override
     public int getCount() {
-        return 3;
+        return 2;
     }
 
     @NonNull
     @Override
     public StepViewModel getViewModel(@IntRange(from = 0) int position) {
-        if (position == 0) {
-            return new StepViewModel.Builder(context).setTitle("Descripción").create();
-        } else if (position == 1) {
-            return new StepViewModel.Builder(context).setTitle("Ingredientes").create();
-        } else if (position == 2) {
-            return new StepViewModel.Builder(context).setTitle("Pasos").create();
-        } else{
-            return null;
+        switch (position) {
+            case 0:
+                return new StepViewModel.Builder(context).setTitle("Descripción").setSubtitle("Ingresa los datos\nbásicos de tu receta").setBackButtonLabel("Cancelar").setEndButtonLabel("Siguiente").create();
+            case 1:
+                return new StepViewModel.Builder(context).setTitle("Pasos").setSubtitle("Crea los pasos de\ntu receta").setBackButtonLabel("Atrás").setEndButtonLabel("Crear Receta").create();
+            case 2:
+                return new StepViewModel.Builder(context).setTitle("Ingredientes").setSubtitle("Visualiza los ingredientes\nde tu receta").setBackButtonLabel("Atrás").setEndButtonLabel("Crear Receta").create();
         }
+        return null;
     }
 }

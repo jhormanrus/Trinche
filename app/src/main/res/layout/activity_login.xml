@@ -71,11 +71,11 @@
                         android:layout_height="40dp"
                         android:layout_marginTop="5dp"
                         android:background="@drawable/et_bg"
-                        android:fontFamily="@font/f_architects_daughter"
                         android:paddingLeft="15dp"
                         android:paddingRight="15dp"
                         android:textColor="@color/white"
-                        android:textSize="15sp"
+                        android:textCursorDrawable="@drawable/cur_cor_w"
+                        android:textSize="13sp"
                         android:maxLines="1"/>
                 </LinearLayout>
 
@@ -100,17 +100,17 @@
                         android:layout_height="40dp"
                         android:layout_marginTop="5dp"
                         android:background="@drawable/et_bg"
-                        android:fontFamily="@font/f_architects_daughter"
                         android:paddingLeft="15dp"
                         android:paddingRight="15dp"
                         android:textColor="@color/white"
-                        android:textSize="15sp"
+                        android:textCursorDrawable="@drawable/cur_cor_w"
+                        android:textSize="13sp"
                         android:inputType="textPassword"
                         android:maxLines="1"/>
                 </LinearLayout>
             </LinearLayout>
 
-            <Button
+            <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
                 android:id="@+id/enterBTN"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
@@ -125,7 +125,12 @@
                 android:text="Ingresar"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:textSize="18sp"/>
+                android:textSize="18sp"
+                app:spinning_bar_width="4dp"
+                app:spinning_bar_color="#FFF"
+                app:spinning_bar_padding="4dp"
+                app:initialCornerAngle="20dp"
+                app:finalCornerAngle="20dp"/>
         </RelativeLayout>
     </RelativeLayout>
 

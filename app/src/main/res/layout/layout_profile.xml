@@ -1,147 +1,260 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/white">
+    android:layout_height="match_parent">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <ImageView
-            android:id="@+id/portadaIV"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:adjustViewBounds="true"
-            android:scaleType="fitCenter"
-            android:layout_centerHorizontal="true"
-            android:background="#999999" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_centerInParent="true"
-            android:gravity="center"
-            android:paddingTop="5dp">
-
-            <com.mikhaellopez.circularimageview.CircularImageView
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:src="@mipmap/perfil"
-                app:civ_border_color="#ffffff"
-                app:civ_border_width="6dp"
-                app:civ_shadow="true"
-                app:civ_shadow_radius="0"
-                app:civ_shadow_color="#000000"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/nom_ap"
-                android:textColor="#000000"
-                android:textStyle="bold"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/usuario"
-                android:textStyle="bold"/>
-        </LinearLayout>
+        android:orientation="vertical"
+        android:background="@color/white">
 
         <RelativeLayout
-            android:layout_below="@+id/portadaIV"
             android:layout_width="match_parent"
-            android:layout_height="230dp"
-            android:paddingTop="30dp"
-            android:paddingBottom="-30dp">
-
-            <TextView
-                android:id="@+id/descripcionTV"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="80dp"
-                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus in sapien ut nisl ultricies dictum at ut dui. Curabitur ac turpis eu lectus aliquet aliquam. Praesent efficitur porta elit, sed volutpat mi molestie non. Pellentesque maximus magna eget gravida lobortis. Phasellus eleifend purus nec diam tempus, nec cursus turpis." />
-        </RelativeLayout>
-    </RelativeLayout>
-
-    <HorizontalScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <at.markushi.ui.CircleButton
-                android:id="@+id/show_recipeCBT"
-                android:layout_width="90dp"
-                android:layout_height="90dp"
-                android:src="@drawable/ic_twotone_receipt_24px"
-                android:tint="@color/white"
-                app:cb_color="@color/colorPrimaryDark"
-                app:cb_pressedRingWidth="10dp" />
+            <ImageView
+                android:id="@+id/portadaIV"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                android:layout_centerHorizontal="true"
+                android:background="#999999" />
 
-            <at.markushi.ui.CircleButton
-                android:id="@+id/show_bookCBT"
-                android:layout_width="90dp"
-                android:layout_height="90dp"
-                android:src="@mipmap/twotone_book_white_36dp"
-                app:cb_color="@color/colorPrimaryDark"
-                app:cb_pressedRingWidth="10dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:paddingTop="5dp">
 
-            <at.markushi.ui.CircleButton
-                android:id="@+id/show_followersCBT"
-                android:visibility="gone"
-                android:layout_width="90dp"
-                android:layout_height="90dp"
-                android:src="@mipmap/twotone_supervisor_account_white_36dp"
-                app:cb_color="@color/colorPrimaryDark"
-                app:cb_pressedRingWidth="10dp" />
+                <com.mikhaellopez.circularimageview.CircularImageView
+                    android:id="@+id/perfilCIV"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    app:civ_border_color="#ffffff"
+                    app:civ_border_width="6dp"
+                    app:civ_shadow="true"
+                    app:civ_shadow_radius="0"
+                    app:civ_shadow_color="#000000"/>
 
-            <at.markushi.ui.CircleButton
-                android:id="@+id/show_followingCBT"
-                android:visibility="gone"
-                android:layout_width="90dp"
-                android:layout_height="90dp"
-                android:src="@mipmap/twotone_people_white_36dp"
-                app:cb_color="@color/colorPrimaryDark"
-                app:cb_pressedRingWidth="10dp" />
+                <TextView
+                    android:id="@+id/read_nomapTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nom_ap"
+                    android:textColor="#000000"
+                    android:textStyle="bold"/>
 
-            <at.markushi.ui.CircleButton
-                android:id="@+id/show_addedCBT"
-                android:visibility="gone"
-                android:layout_width="90dp"
-                android:layout_height="90dp"
-                android:src="@mipmap/twotone_how_to_reg_white_36dp"
-                app:cb_color="@color/colorPrimaryDark"
-                app:cb_pressedRingWidth="10dp" />
+                <TextView
+                    android:id="@+id/read_userTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/usuario"
+                    android:textStyle="bold"/>
+            </LinearLayout>
 
-            <at.markushi.ui.CircleButton
-                android:id="@+id/show_addCBT"
-                android:visibility="gone"
-                android:layout_width="90dp"
-                android:layout_height="90dp"
-                android:src="@mipmap/twotone_group_add_white_36dp"
-                app:cb_color="@color/colorPrimaryDark"
-                app:cb_pressedRingWidth="10dp" />
+            <RelativeLayout
+                android:layout_below="@+id/portadaIV"
+                android:layout_width="match_parent"
+                android:layout_height="230dp"
+                android:paddingTop="30dp"
+                android:paddingBottom="-30dp">
 
-            <at.markushi.ui.CircleButton
-                android:id="@+id/show_settingCBT"
-                android:visibility="gone"
-                android:layout_width="90dp"
-                android:layout_height="90dp"
-                android:src="@mipmap/twotone_settings_white_36dp"
-                app:cb_color="@color/colorPrimaryDark"
-                app:cb_pressedRingWidth="10dp" />
-        </LinearLayout>
-    </HorizontalScrollView>
-</LinearLayout>
+                <TextView
+                    android:id="@+id/read_descriptionTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="80dp"
+                    android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus in sapien ut nisl ultricies dictum at ut dui. Curabitur ac turpis eu lectus aliquet aliquam. Praesent efficitur porta elit, sed volutpat mi molestie non. Pellentesque maximus magna eget gravida lobortis. Phasellus eleifend purus nec diam tempus, nec cursus turpis." />
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/show_recipeLL"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <at.markushi.ui.CircleButton
+                        android:id="@+id/show_recipeCBT"
+                        android:layout_width="90dp"
+                        android:layout_height="90dp"
+                        android:src="@drawable/ic_twotone_receipt_24px"
+                        android:tint="@color/white"
+                        app:cb_color="@color/colorPrimaryDark"
+                        app:cb_pressedRingWidth="10dp" />
+
+                    <TextView
+                        android:layout_marginTop="5dp"
+                        android:textColor="@color/black"
+                        android:text="Mis recetas"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/show_bookLL"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <at.markushi.ui.CircleButton
+                        android:id="@+id/show_bookCBT"
+                        android:layout_width="90dp"
+                        android:layout_height="90dp"
+                        android:src="@mipmap/twotone_book_white_36dp"
+                        app:cb_color="@color/colorPrimaryDark"
+                        app:cb_pressedRingWidth="10dp" />
+
+                    <TextView
+                        android:layout_marginTop="5dp"
+                        android:textColor="@color/black"
+                        android:text="Mis libros"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/show_followersLL"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <at.markushi.ui.CircleButton
+                        android:id="@+id/show_followersCBT"
+                        android:layout_width="90dp"
+                        android:layout_height="90dp"
+                        android:src="@mipmap/twotone_supervisor_account_white_36dp"
+                        app:cb_color="@color/colorPrimaryDark"
+                        app:cb_pressedRingWidth="10dp" />
+
+                    <TextView
+                        android:layout_marginTop="5dp"
+                        android:textColor="@color/black"
+                        android:text="Seguidores"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/show_followingLL"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <at.markushi.ui.CircleButton
+                        android:id="@+id/show_followingCBT"
+                        android:layout_width="90dp"
+                        android:layout_height="90dp"
+                        android:src="@mipmap/twotone_people_white_36dp"
+                        app:cb_color="@color/colorPrimaryDark"
+                        app:cb_pressedRingWidth="10dp" />
+
+                    <TextView
+                        android:layout_marginTop="5dp"
+                        android:textColor="@color/black"
+                        android:text="Seguidos"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/show_addedLL"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <at.markushi.ui.CircleButton
+                        android:id="@+id/show_addedCBT"
+                        android:layout_width="90dp"
+                        android:layout_height="90dp"
+                        android:src="@mipmap/twotone_how_to_reg_white_36dp"
+                        app:cb_color="@color/colorPrimaryDark"
+                        app:cb_pressedRingWidth="10dp" />
+
+                    <TextView
+                        android:layout_marginTop="5dp"
+                        android:textColor="@color/black"
+                        android:text="Siguiendo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/show_addLL"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <at.markushi.ui.CircleButton
+                        android:id="@+id/show_addCBT"
+                        android:layout_width="90dp"
+                        android:layout_height="90dp"
+                        android:src="@mipmap/twotone_group_add_white_36dp"
+                        app:cb_color="@color/colorPrimaryDark"
+                        app:cb_pressedRingWidth="10dp" />
+
+                    <TextView
+                        android:layout_marginTop="5dp"
+                        android:textColor="@color/black"
+                        android:text="Seguir"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/show_settingLL"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <at.markushi.ui.CircleButton
+                        android:id="@+id/show_settingCBT"
+                        android:layout_width="90dp"
+                        android:layout_height="90dp"
+                        android:src="@mipmap/twotone_settings_white_36dp"
+                        app:cb_color="@color/colorPrimaryDark"
+                        app:cb_pressedRingWidth="10dp" />
+
+                    <TextView
+                        android:layout_marginTop="5dp"
+                        android:textColor="@color/black"
+                        android:text="Configuración"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"/>
+                </LinearLayout>
+            </LinearLayout>
+        </HorizontalScrollView>
+    </LinearLayout>
+</ScrollView>

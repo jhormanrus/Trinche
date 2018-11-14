@@ -51,11 +51,11 @@
                         android:layout_height="40dp"
                         android:layout_marginTop="5dp"
                         android:background="@drawable/et_bg"
-                        android:fontFamily="@font/f_architects_daughter"
                         android:paddingLeft="15dp"
                         android:paddingRight="15dp"
                         android:textColor="@color/white"
-                        android:textSize="15sp"/>
+                        android:textCursorDrawable="@drawable/cur_cor_w"
+                        android:textSize="13sp"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -80,11 +80,11 @@
                         android:layout_height="40dp"
                         android:layout_marginTop="5dp"
                         android:background="@drawable/et_bg"
-                        android:fontFamily="@font/f_architects_daughter"
                         android:paddingLeft="15dp"
                         android:paddingRight="15dp"
                         android:textColor="@color/white"
-                        android:textSize="15sp"
+                        android:textCursorDrawable="@drawable/cur_cor_w"
+                        android:textSize="13sp"
                         android:inputType="textPassword" />
                 </LinearLayout>
             </LinearLayout>
@@ -110,11 +110,11 @@
                     android:layout_height="40dp"
                     android:layout_marginTop="5dp"
                     android:background="@drawable/et_bg"
-                    android:fontFamily="@font/f_architects_daughter"
                     android:paddingLeft="15dp"
                     android:paddingRight="15dp"
                     android:textColor="@color/white"
-                    android:textSize="15sp" />
+                    android:textCursorDrawable="@drawable/cur_cor_w"
+                    android:textSize="13sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -146,11 +146,10 @@
                         android:layout_height="40dp"
                         android:layout_marginTop="5dp"
                         android:background="@drawable/et_bg"
-                        android:fontFamily="@font/f_architects_daughter"
                         android:paddingLeft="15dp"
                         android:paddingRight="15dp"
                         android:textColor="@color/white"
-                        android:textSize="15sp" />
+                        android:textSize="13sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -175,12 +174,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:layout_marginTop="5dp"
-                        android:background="@drawable/spn_bg"
-                        android:fontFamily="@font/f_architects_daughter"
+                        android:background="@drawable/et_bg"
                         android:paddingLeft="15dp"
                         android:paddingRight="15dp"
-                        android:textColor="@color/white"
-                        android:textSize="15sp" />
+                        android:textSize="13sp" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -199,17 +196,16 @@
                     android:textColor="@color/white"
                     android:textSize="15sp"/>
 
-                <EditText
-                    android:id="@+id/create_paisET"
+                <Spinner
+                    android:id="@+id/create_countrySN"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_marginTop="5dp"
                     android:background="@drawable/et_bg"
-                    android:fontFamily="@font/f_architects_daughter"
                     android:paddingLeft="15dp"
                     android:paddingRight="15dp"
-                    android:textColor="@color/white"
-                    android:textSize="15sp" />
+                    android:textColor="@color/black"
+                    android:textSize="13sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -233,11 +229,11 @@
                     android:layout_height="40dp"
                     android:layout_marginTop="5dp"
                     android:background="@drawable/et_bg"
-                    android:fontFamily="@font/f_architects_daughter"
                     android:paddingLeft="15dp"
                     android:paddingRight="15dp"
                     android:textColor="@color/white"
-                    android:textSize="15sp"
+                    android:textCursorDrawable="@drawable/cur_cor_w"
+                    android:textSize="13sp"
                     android:inputType="textEmailAddress" />
             </LinearLayout>
         </LinearLayout>

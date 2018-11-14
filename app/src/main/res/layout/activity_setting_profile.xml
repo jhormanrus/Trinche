@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@mipmap/main_background"
     tools:context="com.trinche.app.SettingProfile">
 
     <LinearLayout
@@ -23,6 +24,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="6"
                 android:layout_marginStart="10dp"
+                android:layout_marginEnd="6dp"
                 android:orientation="vertical"
                 android:gravity="center"
                 android:layout_gravity="center">
@@ -38,18 +40,19 @@
                         android:fontFamily="@font/f_architects_daughter"
                         android:text="Usuario"
                         android:textAllCaps="true"
-                        android:textColor="@color/black"
+                        android:textColor="@color/white"
                         android:textSize="15sp"/>
 
                     <EditText
-                        android:id="@+id/create_usuarioET"
+                        android:id="@+id/update_usuarioET"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:layout_marginTop="5dp"
-                        android:background="@drawable/et_b_bg"
-                        android:fontFamily="@font/f_architects_daughter"
+                        android:background="@drawable/et_bg"
+                        android:textColor="@color/white"
                         android:paddingLeft="15dp"
                         android:paddingRight="15dp"
+                        android:textCursorDrawable="@drawable/cur_cor_w"
                         android:textSize="15sp"/>
                 </LinearLayout>
 
@@ -60,43 +63,72 @@
                     android:layout_marginTop="10dp"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
-                    android:background="@drawable/btn_b_bg"
+                    android:background="@drawable/btn_bg"
                     android:fontFamily="@font/f_gloria_hallelujah"
                     android:text="Cambiar contraseña"
                     android:textAllCaps="false"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:textSize="15sp"/>
             </LinearLayout>
 
-            <LinearLayout
+            <android.support.constraint.ConstraintLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="4"
-                android:gravity="center"
-                android:orientation="vertical">
+                android:layout_weight="4">
 
-                <com.mikhaellopez.circularimageview.CircularImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:src="@mipmap/perfil"
-                    app:civ_border_width="0dp"
-                    app:civ_shadow="true"
-                    app:civ_shadow_radius="0"
-                    app:civ_shadow_color="#000000"/>
+                <ImageView
+                    android:id="@+id/update_portadaIV"
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    android:scaleType="centerCrop"/>
 
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="35dp"
-                    android:layout_marginTop="6dp"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:background="@drawable/btn_b_bg"
-                    android:fontFamily="@font/f_gloria_hallelujah"
-                    android:text="Cambiar foto"
-                    android:textAllCaps="false"
-                    android:textColor="@color/black"
-                    android:textSize="13sp" />
-            </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <com.mikhaellopez.circularimageview.CircularImageView
+                        android:id="@+id/update_imageCIV"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        app:civ_border_width="1dp"
+                        app:civ_shadow="true"
+                        app:civ_shadow_radius="0"
+                        app:civ_shadow_color="#ffffff"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="6dp">
+
+                        <ImageButton
+                            android:id="@+id/update_imageBTN"
+                            android:layout_width="wrap_content"
+                            android:layout_height="35dp"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:layout_marginEnd="3dp"
+                            android:background="@drawable/btn_bg"
+                            android:src="@drawable/ic_twotone_account_circle_24px"
+                            android:tint="@color/white"
+                            android:contentDescription="Cambiar foto de perfil" />
+
+                        <ImageButton
+                            android:id="@+id/update_portadaBTN"
+                            android:layout_width="wrap_content"
+                            android:layout_height="35dp"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:layout_marginStart="3dp"
+                            android:background="@drawable/btn_bg"
+                            android:src="@drawable/ic_twotone_vignette_24px"
+                            android:tint="@color/white"
+                            android:contentDescription="Cambiar foto de portada" />
+                    </LinearLayout>
+                </LinearLayout>
+            </android.support.constraint.ConstraintLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -111,19 +143,19 @@
                 android:fontFamily="@font/f_architects_daughter"
                 android:text="Nombres y apellidos"
                 android:textAllCaps="true"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="15sp"/>
 
             <EditText
-                android:id="@+id/create_nom_apeET"
+                android:id="@+id/update_nomapeET"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginTop="5dp"
-                android:background="@drawable/et_b_bg"
-                android:fontFamily="@font/f_architects_daughter"
+                android:background="@drawable/et_bg"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
+                android:textCursorDrawable="@drawable/cur_cor_w"
                 android:textSize="15sp" />
 
             <TextView
@@ -133,22 +165,23 @@
                 android:fontFamily="@font/f_architects_daughter"
                 android:text="Descripción"
                 android:textAllCaps="true"
-                android:textColor="@color/black"
-                android:textSize="15sp"/>
+                android:textColor="@color/white"
+                android:textSize="15sp" />
 
             <EditText
-                android:id="@+id/usernameET"
+                android:id="@+id/update_desciptionET"
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
+                android:layout_height="100dp"
                 android:layout_marginTop="5dp"
-                android:background="@drawable/et_b_bg"
-                android:fontFamily="@font/f_architects_daughter"
+                android:background="@drawable/et_bg"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
                 android:textSize="15sp"
+                android:textColor="@color/white"
                 android:inputType="textMultiLine"
-                android:maxLines="5"
-                android:lines="5"/>
+                android:maxLines="4"
+                android:lines="4"
+                android:textCursorDrawable="@drawable/cur_cor_w"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -170,7 +203,7 @@
                         android:fontFamily="@font/f_architects_daughter"
                         android:text="Nacimiento"
                         android:textAllCaps="true"
-                        android:textColor="@color/black"
+                        android:textColor="@color/white"
                         android:textSize="15sp"/>
 
                     <Button
@@ -178,11 +211,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:layout_marginTop="5dp"
-                        android:background="@drawable/et_b_bg"
-                        android:fontFamily="@font/f_architects_daughter"
+                        android:background="@drawable/et_bg"
                         android:paddingLeft="15dp"
                         android:paddingRight="15dp"
-                        android:textColor="@color/black"
+                        android:gravity="start|center_vertical"
+                        android:textColor="@color/white"
                         android:textSize="15sp" />
                 </LinearLayout>
 
@@ -199,20 +232,19 @@
                         android:fontFamily="@font/f_architects_daughter"
                         android:text="Género"
                         android:textAllCaps="true"
-                        android:textColor="@color/black"
+                        android:textColor="@color/white"
                         android:textSize="15sp"/>
 
                     <Spinner
-                        android:id="@+id/create_genderSN"
+                        android:id="@+id/update_genderSN"
                         android:entries="@array/spinner_gender"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:layout_marginTop="5dp"
-                        android:background="@drawable/et_b_bg"
-                        android:fontFamily="@font/f_architects_daughter"
+                        android:background="@drawable/et_bg"
                         android:paddingLeft="15dp"
                         android:paddingRight="15dp"
-                        android:textColor="@color/black"
+                        android:textCursorDrawable="@drawable/cur_cor_w"
                         android:textSize="15sp" />
                 </LinearLayout>
             </LinearLayout>
@@ -224,20 +256,18 @@
                 android:fontFamily="@font/f_architects_daughter"
                 android:text="País"
                 android:textAllCaps="true"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="15sp"/>
 
-            <EditText
-                android:id="@+id/create_paisET"
+            <Spinner
+                android:id="@+id/update_countrySN"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginTop="5dp"
-                android:background="@drawable/et_b_bg"
-                android:fontFamily="@font/f_architects_daughter"
+                android:background="@drawable/et_bg"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
-                android:textColor="@color/black"
-                android:textSize="15sp" />
+                android:textSize="13sp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -246,24 +276,24 @@
                 android:fontFamily="@font/f_architects_daughter"
                 android:text="Correo"
                 android:textAllCaps="true"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="15sp"/>
 
             <EditText
-                android:id="@+id/create_correoET"
+                android:id="@+id/update_correoET"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginTop="5dp"
-                android:background="@drawable/et_b_bg"
-                android:fontFamily="@font/f_architects_daughter"
+                android:background="@drawable/et_bg"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="15sp"
+                android:textCursorDrawable="@drawable/cur_cor_w"
                 android:inputType="textEmailAddress" />
 
             <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
-                android:id="@+id/registerCPB"
+                android:id="@+id/updateCPB"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:layout_gravity="center"
@@ -274,9 +304,9 @@
                 android:paddingRight="70dp"
                 android:text="Guardar"
                 android:textAllCaps="false"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="18sp"
-                android:background="@drawable/btn_b_bg"
+                android:background="@drawable/btn_bg"
                 app:spinning_bar_width="4dp"
                 app:spinning_bar_color="#FFF"
                 app:spinning_bar_padding="4dp"
