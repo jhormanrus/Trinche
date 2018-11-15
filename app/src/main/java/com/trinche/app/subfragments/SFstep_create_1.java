@@ -4,12 +4,10 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.OpenableColumns;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -25,6 +23,7 @@ import android.widget.Spinner;
 import com.awesome.shorty.AwesomeToast;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.raywenderlich.android.validatetor.ValidateTor;
 import com.stepstone.stepper.BlockingStep;
 import com.stepstone.stepper.StepperLayout;
 import com.stepstone.stepper.VerificationError;
@@ -51,6 +50,7 @@ public class SFstep_create_1 extends Fragment implements BlockingStep, View.OnCl
     Spinner re_categorySN, re_countrySN;
     Button create_imageBTN;
     ImageView create_imageIV;
+    ValidateTor validateTor = new ValidateTor();
     ArrayList<String> countries = new ArrayList<>();
     ArrayList<String> id_countries = new ArrayList<>();
     ArrayList<String> categories = new ArrayList<>();
@@ -187,17 +187,53 @@ public class SFstep_create_1 extends Fragment implements BlockingStep, View.OnCl
 
     @Override
     public void onNextClicked(StepperLayout.OnNextClickedCallback callback) {
-        final JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("NOMBRE", create_nom_reET.getText().toString());
-        jsonObject.addProperty("DESCRIPCION", create_descriptionET.getText().toString());
-        jsonObject.addProperty("PORCIONES", create_portionsET.getText().toString());
-        jsonObject.addProperty("ID_PAIS", id_countries.get(re_countrySN.getSelectedItemPosition()));
-        jsonObject.addProperty("ID_CATEGORIA", id_categories.get(re_categorySN.getSelectedItemPosition()));
-        jsonObject.addProperty("TIEMPO", create_timeET.getText().toString());
-        mnGrecipe.saveReceta(jsonObject);
-        byte[] imagen = imageViewtoByte(create_imageIV);
-        mnGrecipe.saveRecetaImage(imagen, fileUrf);
-        callback.goToNextStep();
+        if (value == 1) {
+            if (!create_nom_reET.getText().toString().equals("")) {
+                if (validateTor.isAtMostLength(create_nom_reET.getText().toString(), 50)){
+                    if (!create_descriptionET.getText().toString().equals("")) {
+                        if (validateTor.isAtMostLength(create_descriptionET.getText().toString(), 500)) {
+                            if (validateTor.isNumeric(create_timeET.getText().toString())) {
+                                if (validateTor.isAtMostLength(create_timeET.getText().toString(), 10)) {
+                                    if (validateTor.isNumeric(create_portionsET.getText().toString())) {
+                                        if (validateTor.isAtMostLength(create_portionsET.getText().toString(), 10)) {
+                                            final JsonObject jsonObject = new JsonObject();
+                                            jsonObject.addProperty("NOMBRE", create_nom_reET.getText().toString());
+                                            jsonObject.addProperty("DESCRIPCION", create_descriptionET.getText().toString());
+                                            jsonObject.addProperty("PORCIONES", create_portionsET.getText().toString());
+                                            jsonObject.addProperty("ID_PAIS", id_countries.get(re_countrySN.getSelectedItemPosition()));
+                                            jsonObject.addProperty("ID_CATEGORIA", id_categories.get(re_categorySN.getSelectedItemPosition()));
+                                            jsonObject.addProperty("TIEMPO", create_timeET.getText().toString());
+                                            mnGrecipe.saveReceta(jsonObject);
+                                            byte[] imagen = imageViewtoByte(create_imageIV);
+                                            mnGrecipe.saveRecetaImage(imagen, fileUrf);
+                                            callback.goToNextStep();
+                                        } else {
+                                            AwesomeToast.INSTANCE.warning(getContext(),  "PORCIONES - Máximo 10 caracteres").show();
+                                        }
+                                    } else {
+                                        AwesomeToast.INSTANCE.warning(getContext(),  "PORCIONES - Solo números enteros").show();
+                                    }
+                                } else {
+                                    AwesomeToast.INSTANCE.warning(getContext(),  "TIEMPO - Máximo 10 caracteres").show();
+                                }
+                            } else {
+                                AwesomeToast.INSTANCE.warning(getContext(),  "TIEMPO - Solo números enteros").show();
+                            }
+                        } else {
+                            AwesomeToast.INSTANCE.warning(getContext(),  "DESCRIPCIÓN - Máximo 500 caracteres").show();
+                        }
+                    } else {
+                        AwesomeToast.INSTANCE.warning(getContext(),  "DESCRIPCIÓN - El campo está vacío").show();
+                    }
+                } else {
+                    AwesomeToast.INSTANCE.warning(getContext(),  "NOMBRE DE RECETA - Máximo 50 caracteres").show();
+                }
+            } else {
+                AwesomeToast.INSTANCE.warning(getContext(),  "NOMBRE DE RECETA - El campo está vacío").show();
+            }
+        } else {
+            AwesomeToast.INSTANCE.warning(getContext(),  "Suba una imagen para su receta").show();
+        }
     }
 
     @Override

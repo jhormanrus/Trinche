@@ -97,17 +97,20 @@ public class LOprofile extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.show_recipeCBT:
-                Intent intent1 = new Intent(getActivity(), OptionRecipes.class);
+                AwesomeToast.INSTANCE.info(getActivity(),  "Pronto ...").show();
+                /*Intent intent1 = new Intent(getActivity(), OptionRecipes.class);
                 intent1.putExtra("type", "1");
-                startActivity(intent1);
+                startActivity(intent1);*/
                 break;
 
             case R.id.show_bookCBT:
-                Intent intent2 = new Intent(getActivity(), OptionBooks.class);
-                startActivity(intent2);
+                AwesomeToast.INSTANCE.info(getActivity(),  "Pronto ...").show();
+                /*Intent intent2 = new Intent(getActivity(), OptionBooks.class);
+                startActivity(intent2);*/
                 break;
 
             case R.id.show_followersCBT:
+                AwesomeToast.INSTANCE.info(getActivity(),  "Pronto ...").show();
                 new AwesomeCustomDialog(v.getContext()).setTopColor(Color.parseColor("#FFB475")).setIcon(R.mipmap.twotone_supervisor_account_white_36dp)
                         .setTitle("Seguidores").setView(R.layout.tiny_follow).configureView(new AwesomeCustomDialog.ViewConfigurator() {
                     @Override
@@ -120,6 +123,7 @@ public class LOprofile extends Fragment implements View.OnClickListener {
                 break;
 
             case R.id.show_followingCBT:
+                AwesomeToast.INSTANCE.info(getActivity(),  "Pronto ...").show();
                 new AwesomeCustomDialog(v.getContext()).setTopColor(Color.parseColor("#FFB475")).setIcon(R.mipmap.twotone_people_white_36dp)
                         .setTitle("Seguidos").setView(R.layout.tiny_follow).configureView(new AwesomeCustomDialog.ViewConfigurator() {
                     @Override

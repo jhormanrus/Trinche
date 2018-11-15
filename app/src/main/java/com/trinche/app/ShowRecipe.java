@@ -1,28 +1,27 @@
 package com.trinche.app;
 
+import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.IntRange;
+import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.request.RequestOptions;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonParser;
-import com.redbooth.WelcomeCoordinatorLayout;
+import com.stepstone.stepper.Step;
+import com.stepstone.stepper.StepperLayout;
+import com.stepstone.stepper.adapter.AbstractFragmentStepAdapter;
+import com.stepstone.stepper.viewmodel.StepViewModel;
+import com.trinche.app.subfragments.SFshow_step;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 public class ShowRecipe extends AppCompatActivity {
 
-    WelcomeCoordinatorLayout stepsWCL;
-    int[] pages;
+    StepperLayout stepper_recipeSL;
     JSONArray steps;
+    String array_steps;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,45 +29,54 @@ public class ShowRecipe extends AppCompatActivity {
         setContentView(R.layout.activity_show_recipe);
 
         final Intent intent = getIntent();
+        array_steps = intent.getStringExtra("steps");
         try {
-            steps = new JSONArray(intent.getStringExtra("steps"));
+            steps = new JSONArray(array_steps);
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        stepsWCL = (WelcomeCoordinatorLayout) findViewById(R.id.stepsWCL);
-        pages = new int[steps.length()];
-        for (int i = 0; i < steps.length(); i++) {
-            pages[i] = R.layout.tiny_show_recipe;
-            System.out.println(pages[i]);
-        }
-        stepsWCL.addPage(pages);
-        stepsWCL.setOnPageScrollListener(new WelcomeCoordinatorLayout.OnPageScrollListener() {
-            @Override
-            public void onScrollPage(View v, float progress, float maximum) { }
+        stepper_recipeSL = (StepperLayout) findViewById(R.id.stepper_recipeSL);
+        stepper_recipeSL.setAdapter(new STEPshow_step(getSupportFragmentManager(), this));
+    }
 
-            @Override
-            public void onPageSelected(View v, int pageSelected) {
-                TextView step_nameTV = (TextView) v.findViewById(R.id.step_nameTV);
-                TextView step_ingredientsTV = (TextView) v.findViewById(R.id.step_ingredientsTV);
-                TextView step_descriptionTV = (TextView) v.findViewById(R.id.step_descriptionTV);
-                ImageView step_imageIV = (ImageView) v.findViewById(R.id.step_imageIV);
-                try {
-                    JSONObject mini = steps.getJSONObject(pageSelected);
-                    step_nameTV.setText(mini.getString("N_PASO") + ". " + mini.getString("NOMBRE"));
-                    String array = mini.getJSONArray("DETALLE_PASOS").toString();
-                    JSONArray ingredients = new JSONArray(array);
-                    String step_ingredients = "";
-                    for (int j = 0; j < ingredients.length(); j++) {
-                        JSONObject mono = ingredients.getJSONObject(j);
-                        step_ingredients = step_ingredients + "- " + mono.getString("NOMBRE") + " " + mono.getString("PESO") + "\n";
-                    }
-                    step_ingredientsTV.setText(step_ingredients);
-                    step_descriptionTV.setText(mini.getString("DESCRIPCION"));
-                    Glide.with(getApplicationContext()).load("http://104.197.2.172:8760/recipe/stepdown/" + mini.getString("ID_PASOS")).apply(new RequestOptions().fitCenter().diskCacheStrategy(DiskCacheStrategy.NONE)).into(step_imageIV);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+    public class STEPshow_step extends AbstractFragmentStepAdapter {
+
+        public STEPshow_step(@NonNull FragmentManager fm, @NonNull Context context) {
+            super(fm, context);
+        }
+
+        @Override
+        public Step createStep(int position) {
+            final SFshow_step step = new SFshow_step();
+            Bundle b = new Bundle();
+            try {
+                b.putString("jsonObject", steps.getJSONObject(position).toString());
+                b.putInt("position", position);
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
-        });
+            step.setArguments(b);
+            return step;
+        }
+
+        @Override
+        public int getCount() {
+            return steps.length();
+        }
+
+        @NonNull
+        @Override
+        public StepViewModel getViewModel(@IntRange(from = 0) int position) {
+            StepViewModel.Builder builder = new StepViewModel.Builder(context);
+            int last = steps.length()-1;
+            if (last == 0) {
+                return new StepViewModel.Builder(context).setBackButtonLabel("Volver").setEndButtonLabel("Finalizar").create();
+            } else if (position == 0) {
+                return new StepViewModel.Builder(context).setBackButtonLabel("Volver").setEndButtonLabel("Siguiente").create();
+            } else if (position == last) {
+                return new StepViewModel.Builder(context).setBackButtonLabel("Atrás").setEndButtonLabel("Finalizar").create();
+            }
+            return new StepViewModel.Builder(context).setBackButtonLabel("Atrás").setEndButtonLabel("Siguiente").create();
+        }
     }
 }

@@ -2,6 +2,7 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -36,14 +37,12 @@
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
                     android:textColor="#000000"
-                    android:text="Sopa do macaco"
                     android:layout_weight="4" />
 
                 <TextView
                     android:id="@+id/textView0"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:text="jhormantito"
                     android:gravity="center_vertical|end"
                     android:layout_weight="2"/>
             </LinearLayout>
@@ -84,7 +83,6 @@
                         android:id="@+id/textView2"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:text="Uma delizia kkkkk Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec id lorem sit amet ligula lacinia fermentum. Fusce pellentesque ligula ut."
                         android:layout_weight="8"
                         android:textColor="#000000"/>
 
@@ -102,7 +100,6 @@
                             android:drawableStart="@drawable/ic_twotone_star_border_24px"
                             android:drawableTint="#848484"
                             android:drawablePadding="2dp"
-                            android:text="100"
                             android:gravity="center_vertical"
                             android:layout_weight="1"/>
 
@@ -110,7 +107,6 @@
                             android:id="@+id/textView4"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:text="20/10/2018"
                             android:gravity="center_vertical|end"
                             android:layout_weight="1"/>
                     </LinearLayout>

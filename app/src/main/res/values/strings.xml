@@ -30,4 +30,15 @@
         <item>Masculino</item>
         <item>Femenino</item>
     </string-array>
+
+    <string-array name="spinner_measure">
+        <item>gr.</item>
+        <item>kg.</item>
+        <item>ml.</item>
+        <item>l.</item>
+        <item>oz.</item>
+        <item>unid.</item>
+    </string-array>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

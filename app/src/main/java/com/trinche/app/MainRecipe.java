@@ -27,11 +27,12 @@ import retrofit2.Response;
 public class MainRecipe extends AppCompatActivity {
 
     CircularImageView recipe_userCIV;
-    TextView recipe_nameTV, recipe_userTV, recipe_dateTV, recipe_descriptionTV, recipe_categoryTV, recipe_countryTV, recipe_portionTV, recipe_timeTV, recipe_starTV;
+    TextView recipe_nameTV, recipe_userTV, recipe_dateTV, recipe_descriptionTV, recipe_categoryTV, recipe_countryTV, recipe_portionTV, recipe_timeTV, recipe_starTV, recipe_starsTV;
     ImageButton recipe_starBTN, recipe_bookBTN;
     ImageView recipe_imageIV;
     Button show_recipeBTN;
     Toolbar show_recipeT;
+    Integer validator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,9 +67,10 @@ public class MainRecipe extends AppCompatActivity {
                     recipe_countryTV = (TextView) findViewById(R.id.recipe_countryTV);
                     recipe_portionTV = (TextView) findViewById(R.id.recipe_portionTV);
                     recipe_timeTV = (TextView) findViewById(R.id.recipe_timeTV);
-                    //recipe_starTV = (TextView) findViewById(R.id.recipe_starTV);
-                    //recipe_starBTN = (ImageButton) findViewById(R.id.recipe_starBTN);
-                    //recipe_bookBTN = (ImageButton) findViewById(R.id.recipe_bookBTN);
+                    recipe_starsTV = (TextView) findViewById(R.id.recipe_starsTV);
+                    recipe_starTV = (TextView) findViewById(R.id.recipe_starTV);
+                    recipe_starBTN = (ImageButton) findViewById(R.id.recipe_starBTN);
+                    recipe_bookBTN = (ImageButton) findViewById(R.id.recipe_bookBTN);
                     show_recipeBTN = (Button) findViewById(R.id.show_recipeBTN);
                     Glide.with(getApplicationContext()).load("http://104.197.2.172:8760/recipe/recipedown/" + intent.getStringExtra("id_receta")).apply(new RequestOptions().fitCenter().diskCacheStrategy(DiskCacheStrategy.NONE)).into(recipe_imageIV);
                     Glide.with(getApplicationContext()).load("http://104.197.2.172:8760/user/perfildown/" + response.body().get("ID_USUARIO").getAsString()).apply(new RequestOptions().fitCenter().diskCacheStrategy(DiskCacheStrategy.NONE)).into(recipe_userCIV);
@@ -80,6 +82,7 @@ public class MainRecipe extends AppCompatActivity {
                     recipe_countryTV.setText(response.body().get("PAIS").getAsString());
                     recipe_portionTV.setText(response.body().get("PORCIONES").getAsString());
                     recipe_timeTV.setText(response.body().get("TIEMPO").getAsString()+" minutos");
+                    recipe_starsTV.setText(response.body().get("PUNTUACION").getAsString());
                     show_recipeBTN.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -87,6 +90,64 @@ public class MainRecipe extends AppCompatActivity {
                             intent.putExtra("steps", response.body().get("PASOS").toString());
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             getApplication().startActivity(intent);
+                        }
+                    });
+                    Call<JsonObject> cali = ApiAdapter.getApiService().readscoreRanking(TOKEN);
+                    cali.enqueue(new Callback<JsonObject>() {
+                        @Override
+                        public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                            if (response.isSuccessful()) {
+                                if (response.body().get("message").getAsInt() == 1) {
+                                    recipe_starTV.setText("-1");
+                                    validator = 0;
+                                } else if (response.body().get("message").getAsInt() == 0) {
+                                    recipe_starTV.setText("+1");
+                                    validator = 1;
+                                }
+                            } else {
+                                AwesomeToast.INSTANCE.error(getApplicationContext(),  "Error inesperado").show();
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<JsonObject> call, Throwable t) {
+                            AwesomeToast.INSTANCE.error(getApplicationContext(),  "Error: " + t.getLocalizedMessage()).show();
+                        }
+                    });
+                    recipe_starBTN.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            final JsonObject jsonObject = new JsonObject();
+                            jsonObject.addProperty("SCORE", validator);
+                            jsonObject.addProperty("ID_PUNTUACIONES", response.body().get("ID_PUNTUACIONES").getAsString());
+                            Call<JsonObject> calc = ApiAdapter.getApiService().updatescoreRanking(TOKEN, jsonObject);
+                            calc.enqueue(new Callback<JsonObject>() {
+                                @Override
+                                public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                                    if (response.isSuccessful()) {
+                                        if (validator == 1) {
+                                            recipe_starTV.setText("-1");
+                                            validator = 0;
+                                        } else if (validator == 0) {
+                                            recipe_starTV.setText("+1");
+                                            validator = 1;
+                                        }
+                                    } else {
+                                        AwesomeToast.INSTANCE.error(getApplicationContext(),  "Error inesperado").show();
+                                    }
+                                }
+
+                                @Override
+                                public void onFailure(Call<JsonObject> call, Throwable t) {
+                                    AwesomeToast.INSTANCE.error(getApplicationContext(),  "Error: " + t.getLocalizedMessage()).show();
+                                }
+                            });
+                        }
+                    });
+                    recipe_bookBTN.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            AwesomeToast.INSTANCE.info(getApplication(),  "Pronto ...").show();
                         }
                     });
                 } else {

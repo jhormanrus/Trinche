@@ -31,7 +31,6 @@
 
             <TextView
                 android:id="@+id/name_categoryTV"
-                android:text="category"
                 android:textAlignment="center"
                 android:textSize="18sp"
                 android:textStyle="bold"

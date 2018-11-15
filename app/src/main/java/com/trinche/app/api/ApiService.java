@@ -28,7 +28,7 @@ public interface ApiService {
             @Body JsonObject json
     );
 
-    @POST("user/read/")
+    @GET("user/read/")
     Call<JsonObject> readUsuario(
             @Query("token") String TOKEN
     );
@@ -101,6 +101,17 @@ public interface ApiService {
     Call<JsonObject> readdetailRecipe(
             @Query("token") String TOKEN,
             @Query("id_receta") String LAST_RECIPE
+    );
+
+    @GET("ranking/readscore/")
+    Call<JsonObject> readscoreRanking(
+            @Query("token") String TOKEN
+    );
+
+    @POST("ranking/updatescore/")
+    Call<JsonObject> updatescoreRanking(
+            @Query("token") String TOKEN,
+            @Body JsonObject json
     );
 
     @GET("country/readall/")

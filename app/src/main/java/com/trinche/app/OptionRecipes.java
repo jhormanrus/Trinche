@@ -232,6 +232,8 @@ public class OptionRecipes extends AppCompatActivity {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            TextView stars_recipeTV = (TextView) convertView.findViewById(R.id.stars_recipeTV);
+            stars_recipeTV.setText(other_recipes.get(position).getAsJsonObject().get("PUNTUACION").getAsString());
             ImageView image_recipeIV = (ImageView) convertView.findViewById(R.id.image_recipeIV);
             Glide.with(getApplicationContext()).load("http://104.197.2.172:8760/recipe/recipedown/" + other_recipes.get(position).getAsJsonObject().get("ID_RECETA").getAsString()).apply(new RequestOptions().fitCenter().diskCacheStrategy(DiskCacheStrategy.NONE)).into(image_recipeIV);
             CardView show_recipeCV = (CardView) convertView.findViewById(R.id.show_recipeCV);

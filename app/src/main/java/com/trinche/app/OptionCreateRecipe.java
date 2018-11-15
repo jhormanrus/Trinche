@@ -87,7 +87,6 @@ public class OptionCreateRecipe extends AppCompatActivity implements StepperLayo
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 if (response.isSuccessful()) {
                     AwesomeToast.INSTANCE.success(getApplicationContext(),  "Receta creada correctamente").show();
-                    System.out.println("WTF BRODA   ");
                     JsonObject respuesta = response.body();
                     RequestBody body = RequestBody.create(MediaType.parse("image/jpeg"), (imageRecipe));
                     MultipartBody.Part file = MultipartBody.Part.createFormData("file", getFileName(urlRecipe), body);
@@ -107,7 +106,6 @@ public class OptionCreateRecipe extends AppCompatActivity implements StepperLayo
                         }
                     });
                     for (int i = 0; i < jsonArray.size(); i++) {
-                        System.out.println("UWUWUUUUU");
                         RequestBody boddy = RequestBody.create(MediaType.parse("image/jpeg"), (imByte.get(i)));
                         MultipartBody.Part fail = MultipartBody.Part.createFormData("file", getFileName(imUri.get(i)), boddy);
                         String ID_PASOS = respuesta.get("PASOS").getAsJsonArray().get(i).getAsJsonObject().get("ID_PASOS").getAsString();

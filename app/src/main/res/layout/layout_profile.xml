@@ -47,7 +47,6 @@
                     android:id="@+id/read_nomapTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/nom_ap"
                     android:textColor="#000000"
                     android:textStyle="bold"/>
 
@@ -55,7 +54,6 @@
                     android:id="@+id/read_userTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/usuario"
                     android:textStyle="bold"/>
             </LinearLayout>
 
@@ -68,12 +66,11 @@
 
                 <TextView
                     android:id="@+id/read_descriptionTV"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:layout_marginTop="80dp"
-                    android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus in sapien ut nisl ultricies dictum at ut dui. Curabitur ac turpis eu lectus aliquet aliquam. Praesent efficitur porta elit, sed volutpat mi molestie non. Pellentesque maximus magna eget gravida lobortis. Phasellus eleifend purus nec diam tempus, nec cursus turpis." />
+                    android:layout_marginTop="80dp" />
             </RelativeLayout>
         </RelativeLayout>
 

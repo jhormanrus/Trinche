@@ -20,6 +20,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,6 +28,7 @@ import android.widget.Filter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.awesome.dialog.AwesomeCustomDialog;
@@ -35,6 +37,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.mancj.materialsearchbar.MaterialSearchBar;
 import com.mancj.materialsearchbar.adapter.SuggestionsAdapter;
+import com.raywenderlich.android.validatetor.ValidateTor;
 import com.stepstone.stepper.BlockingStep;
 import com.stepstone.stepper.StepperLayout;
 import com.stepstone.stepper.VerificationError;
@@ -64,6 +67,7 @@ public class SFstep_create_2 extends Fragment implements BlockingStep, View.OnCl
 
     ListView stepsLV, ingredientsLV;
     FloatingActionButton add_stepFAB;
+    ValidateTor validateTor = new ValidateTor();
     List<JsonObject> listSteps = new ArrayList<JsonObject>();
     List<JsonObject> listIngredients = new ArrayList<JsonObject>();
     JsonArray imIngredients;                              //
@@ -76,6 +80,7 @@ public class SFstep_create_2 extends Fragment implements BlockingStep, View.OnCl
     SFstep_create_2.CustomAdapter customAdapter;
     ImageView create_stepIV;
     Button create_stepBTN;
+    Spinner medida_ingredientSN;
     final int REQUEST_CODE_GALLERY = 999;
     Uri fileUrf;
     Integer value = 0;
@@ -105,15 +110,20 @@ public class SFstep_create_2 extends Fragment implements BlockingStep, View.OnCl
 
     @Override
     public void onCompleteClicked(StepperLayout.OnCompleteClickedCallback callback) {
-        JsonArray JsonStep = new JsonArray();
-        for (int i = 0; i < listSteps.size(); i++) {
-            JsonObject processed = new JsonObject();
-            processed = listSteps.get(i);
-            processed.addProperty("N_PASO", Integer.toString(i+1));
-            JsonStep.add(processed);
+
+        if (listSteps.size() > 0) {
+            JsonArray JsonStep = new JsonArray();
+            for (int i = 0; i < listSteps.size(); i++) {
+                JsonObject processed = new JsonObject();
+                processed = listSteps.get(i);
+                processed.addProperty("N_PASO", Integer.toString(i+1));
+                JsonStep.add(processed);
+            }
+            mnGrecipe.savePasos(JsonStep, imByte, imUri);
+            getActivity().onBackPressed();
+        } else {
+            AwesomeToast.INSTANCE.warning(getContext(),  "No hay pasos suficientes para continuar").show();
         }
-        mnGrecipe.savePasos(JsonStep, imByte, imUri);
-        getActivity().onBackPressed();
     }
 
     @Override
@@ -209,28 +219,72 @@ public class SFstep_create_2 extends Fragment implements BlockingStep, View.OnCl
                         add_stepBTN.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                imIngredients = new JsonArray();
-                                View viuw;
-                                for (int i = 0; i < ingredientsLV.getCount(); i++) {
-                                    viuw = ingredientsLV.getChildAt(i);
-                                    EditText peso_ingredientET = (EditText) viuw.findViewById(R.id.peso_ingredientET);
-                                    JsonObject yeison = new JsonObject();
-                                    yeison.addProperty("ID_INGREDIENTES", listIngredients.get(i).get("ID_INGREDIENTES").getAsString());
-                                    yeison.addProperty("PESO", peso_ingredientET.getText().toString().replace(",", "."));
-                                    imIngredients.add(yeison);
-                                    System.out.println(imIngredients);
+                                if (value == 1) {
+                                    if (!name_stepET.getText().toString().equals("")){
+                                        if (validateTor.isAtMostLength(name_stepET.getText().toString(), 50)) {
+                                            if (!description_stepET.getText().toString().equals("")) {
+                                                if (validateTor.isAtMostLength(description_stepET.getText().toString(), 1000)){
+                                                    imIngredients = new JsonArray();
+                                                    View viuw;
+                                                    Boolean state_peso = true;
+                                                    Boolean state_length = true;
+                                                    Boolean state_double = true;
+                                                    for (int i = 0; i < ingredientsLV.getCount(); i++) {
+                                                        viuw = ingredientsLV.getChildAt(i);
+                                                        EditText peso_ingredientET = (EditText) viuw.findViewById(R.id.peso_ingredientET);
+                                                        Spinner medida_ingredientSN = (Spinner) viuw.findViewById(R.id.medida_ingredientSN);
+                                                        JsonObject yeison = new JsonObject();
+                                                        yeison.addProperty("ID_INGREDIENTES", listIngredients.get(i).get("ID_INGREDIENTES").getAsString());
+                                                        yeison.addProperty("PESO", peso_ingredientET.getText().toString().replace(",", "."));
+                                                        yeison.addProperty("MEDIDA", medida_ingredientSN.getSelectedItemPosition());
+                                                        imIngredients.add(yeison);
+                                                        if (peso_ingredientET.getText().toString().equals("")) {
+                                                            state_peso = false;
+                                                        }
+                                                        if (!validateTor.isAtMostLength(peso_ingredientET.getText().toString(), 10)) {
+                                                            state_length = false;
+                                                        }
+                                                        if (!validateTor.isDecimal(peso_ingredientET.getText().toString())) {
+                                                            state_double = false;
+                                                        }
+                                                    }
+                                                    if (state_peso) {
+                                                        if (state_length) {
+                                                            if (state_double) {
+                                                                STEP = new JsonObject();
+                                                                STEP.addProperty("NOMBRE", name_stepET.getText().toString());
+                                                                STEP.addProperty("DESCRIPCION", description_stepET.getText().toString());
+                                                                STEP.add("DETALLE_PASOS", imIngredients);
+                                                                listSteps.add(STEP);
+                                                                imByte.add(imageViewtoByte(create_stepIV));
+                                                                imUri.add(fileUrf);
+                                                                customAdapter.notifyDataSetChanged();
+                                                                acd.dismiss();
+                                                                value = 0;
+                                                            } else {
+                                                                AwesomeToast.INSTANCE.warning(getContext(),  "Solo se acepta decimales en las medidas").show();
+                                                            }
+                                                        } else {
+                                                            AwesomeToast.INSTANCE.warning(getContext(),  "Uno o más de las medidas excede el máximo de caracteres (10)").show();
+                                                        }
+                                                    } else {
+                                                        AwesomeToast.INSTANCE.warning(getContext(),  "Faltan medida(s) en tu lista de ingredientes").show();
+                                                    }
+                                                } else {
+                                                    AwesomeToast.INSTANCE.warning(getContext(),  "DESCRIPCIÓN - Máximo 1000 caracteres").show();
+                                                }
+                                            } else {
+                                                AwesomeToast.INSTANCE.warning(getContext(),  "DESCRIPCIÓN - El campo está vacío").show();
+                                            }
+                                        } else {
+                                            AwesomeToast.INSTANCE.warning(getContext(),  "NOMBRE DEL PASO - Máximo 50 caracteres").show();
+                                        }
+                                    } else {
+                                        AwesomeToast.INSTANCE.warning(getContext(),  "NOMBRE DEL PASO - El campo está vacío").show();
+                                    }
+                                } else {
+                                    AwesomeToast.INSTANCE.warning(getContext(),  "Suba una imagen para su receta").show();
                                 }
-                                STEP = new JsonObject();
-                                STEP.addProperty("NOMBRE", name_stepET.getText().toString());
-                                STEP.addProperty("DESCRIPCION", description_stepET.getText().toString());
-                                STEP.add("DETALLE_PASOS", imIngredients);
-                                listSteps.add(STEP);
-                                imByte.add(imageViewtoByte(create_stepIV));
-                                imUri.add(fileUrf);
-                                imUri.add(fileUrf);
-                                customAdapter.notifyDataSetChanged();
-                                acd.dismiss();
-                                value = 0;
                             }
                         });
                     }
@@ -405,6 +459,10 @@ public class SFstep_create_2 extends Fragment implements BlockingStep, View.OnCl
                 TextView name_ingredientTV = (TextView) convertView.findViewById(R.id.name_ingredientTV);
                 name_ingredientTV.setText(jsonObjects.get(position).get("NOMBRE").getAsString());
                 EditText peso_ingredientET = (EditText) convertView.findViewById(R.id.peso_ingredientET);
+                ArrayAdapter<String> adapterSN = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, getResources().getStringArray(R.array.spinner_measure));
+                adapterSN.setDropDownViewResource(R.layout.spinner_selected);
+                medida_ingredientSN = (Spinner) convertView.findViewById(R.id.medida_ingredientSN);
+                medida_ingredientSN.setAdapter(adapterSN);
                 ImageButton delete_ingredientBTN = (ImageButton) convertView.findViewById(R.id.delete_ingredientBTN);
                 delete_ingredientBTN.setOnClickListener(new View.OnClickListener() {
                     @Override

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.awesome.dialog.AwesomeCustomDialog;
+import com.awesome.shorty.AwesomeToast;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.BottomBarTab;
 import com.roughike.bottombar.OnTabSelectListener;
@@ -39,8 +40,9 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     }
                     case R.id.tab_ranking: {
-                        LOranking f = new LOranking();
-                        getSupportFragmentManager().beginTransaction().replace(R.id.frame, f).commit();
+                        /*LOranking f = new LOranking();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.frame, f).commit();*/
+                        AwesomeToast.INSTANCE.info(getApplication(),  "Pronto ...").show();
                         break;
                     }
                     case R.id.tab_recipe: {
@@ -51,8 +53,9 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.tab_notifications: {
                         BottomBarTab nearby = bottomBar.getTabWithId(R.id.tab_notifications);
                         nearby.removeBadge();
-                        LOnotifications f = new LOnotifications();
-                        getSupportFragmentManager().beginTransaction().replace(R.id.frame, f).commit();
+                        /*LOnotifications f = new LOnotifications();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.frame, f).commit();*/
+                        AwesomeToast.INSTANCE.info(getApplication(),  "Pronto ...").show();
                         break;
                     }
                     case R.id.tab_profile: {

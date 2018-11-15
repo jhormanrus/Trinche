@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.awesome.dialog.AwesomeSwitchableDialog;
+import com.awesome.shorty.AwesomeToast;
 import com.loicteillard.easytabs.EasyTabs;
 import com.mancj.materialsearchbar.MaterialSearchBar;
 import com.trinche.app.R;
@@ -48,6 +49,7 @@ public class LOhome extends Fragment implements View.OnClickListener, MaterialSe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.searchFAB:
+                AwesomeToast.INSTANCE.info(getActivity(),  "Pronto ...").show();
                 new AwesomeSwitchableDialog(getActivity())
                         .setTopView(R.layout.tiny_searchuser)
                         .setBottomView(R.layout.tiny_searchrecipe)

@@ -78,6 +78,7 @@ public class MainSetting extends AppCompatActivity {
                     return true;
 
                 case "delete_accountPFR":
+                    AwesomeToast.INSTANCE.info(getActivity(),  "Pronto ...").show();
                     new AwesomeCustomDialog(getActivity()).setTopColor(Color.parseColor("#FFB475")).setIcon(R.drawable.ic_twotone_delete_48px).setIconTintColor(Color.parseColor("#FFFFFF"))
                             .setTitle("Eliminar cuenta").setMessage("Estas a punto de eliminar tu cuenta, valida tu contraseña para continuar")
                             .setView(R.layout.tiny_dialogdeleteaccount).configureView(new AwesomeCustomDialog.ViewConfigurator() {

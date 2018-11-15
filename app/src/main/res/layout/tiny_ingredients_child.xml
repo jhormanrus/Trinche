@@ -23,7 +23,7 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="6"
+                android:layout_weight="5"
                 android:orientation="horizontal"
                 android:gravity="center_vertical">
 
@@ -32,7 +32,6 @@
                     android:layout_marginEnd="6dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/nom_ap"
                     android:textStyle="bold"
                     android:textColor="#000000"/>
             </LinearLayout>
@@ -40,20 +39,28 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="4"
+                android:layout_weight="5"
                 android:orientation="horizontal"
-                android:gravity="right">
+                android:gravity="right|center_vertical">
 
                 <EditText
                     android:id="@+id/peso_ingredientET"
-                    android:hint="Peso"
                     android:textAlignment="center"
-                    android:layout_width="70dp"
+                    android:layout_width="54dp"
                     android:layout_height="35dp"
-                    android:layout_marginEnd="3dp"
-                    android:background="@drawable/btn_b_bg"
+                    android:background="@drawable/sp_bg"
                     android:paddingLeft="15dp"
                     android:paddingRight="15dp"
+                    android:textSize="15sp" />
+
+                <Spinner
+                    android:id="@+id/medida_ingredientSN"
+                    android:entries="@array/spinner_measure"
+                    android:textAlignment="center"
+                    android:layout_width="54dp"
+                    android:layout_height="35dp"
+                    android:layout_marginEnd="3dp"
+                    android:background="@drawable/sp_gb"
                     android:textSize="15sp" />
 
                 <ImageButton

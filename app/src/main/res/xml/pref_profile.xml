@@ -34,7 +34,7 @@
     <PreferenceCategory android:title="Acerca de">
         <Preference
             android:selectable="false"
-            android:summary="Nosotros somos lorem ipsum." />
+            android:summary="Jhorman Rus, creador de esta aplicación con fines académicos, estudiante de la Universidad Peruana Unión --- Contacto: jhormantito@upeu.edu.pe" />
 
         <Preference
             android:title="Versión"
