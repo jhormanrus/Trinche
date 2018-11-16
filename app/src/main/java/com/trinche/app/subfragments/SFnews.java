@@ -26,7 +26,6 @@ import com.trinche.app.MainRecipe;
 import com.trinche.app.R;
 import com.trinche.app.api.ApiAdapter;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 import retrofit2.Call;
@@ -90,6 +89,9 @@ public class SFnews extends Fragment {
                                         @Override
                                         public void onFailure(Call<JsonArray> call, Throwable t) {
                                             complete = false;
+                                            Intent i = getActivity().getBaseContext().getPackageManager().getLaunchIntentForPackage(getActivity().getBaseContext().getPackageName());
+                                            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                            startActivity(i);
                                             AwesomeToast.INSTANCE.error(getActivity(),  "Error: " + t.getLocalizedMessage()).show();
                                         }
                                     });
@@ -108,6 +110,9 @@ public class SFnews extends Fragment {
 
             @Override
             public void onFailure(Call<JsonArray> call, Throwable t) {
+                Intent i = getActivity().getBaseContext().getPackageManager().getLaunchIntentForPackage(getActivity().getBaseContext().getPackageName());
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(i);
                 AwesomeToast.INSTANCE.error(getActivity(),  "Error: " + t.getLocalizedMessage()).show();
             }
         });
@@ -156,7 +161,7 @@ public class SFnews extends Fragment {
             TextView stars_recipeTV = (TextView) convertView.findViewById(R.id.stars_recipeTV);
             stars_recipeTV.setText(recipes.get(position).getAsJsonObject().get("PUNTUACION").getAsString());
             ImageView image_recipeIV = (ImageView) convertView.findViewById(R.id.image_recipeIV);
-            Glide.with(getActivity()).load("http://104.197.2.172:8760/recipe/recipedown/" + recipes.get(position).getAsJsonObject().get("ID_RECETA").getAsString()).apply(new RequestOptions().fitCenter().diskCacheStrategy(DiskCacheStrategy.NONE)).into(image_recipeIV);
+            Glide.with(getActivity()).load("http://104.197.2.172/image/recipe/recipedown/" + recipes.get(position).getAsJsonObject().get("ID_RECETA").getAsString()).apply(new RequestOptions().fitCenter().diskCacheStrategy(DiskCacheStrategy.NONE)).into(image_recipeIV);
             CardView show_recipeCV = (CardView) convertView.findViewById(R.id.show_recipeCV);
             show_recipeCV.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -1,6 +1,7 @@
 package com.trinche.app;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
@@ -102,6 +103,9 @@ public class OptionCreateRecipe extends AppCompatActivity implements StepperLayo
 
                         @Override
                         public void onFailure(Call<JsonObject> call, Throwable t) {
+                            Intent i = getApplication().getBaseContext().getPackageManager().getLaunchIntentForPackage(getApplication().getBaseContext().getPackageName());
+                            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(i);
                             AwesomeToast.INSTANCE.error(getApplicationContext(),  "Error: " + t.getLocalizedMessage()).show();
                         }
                     });
@@ -120,6 +124,9 @@ public class OptionCreateRecipe extends AppCompatActivity implements StepperLayo
 
                             @Override
                             public void onFailure(Call<JsonObject> call, Throwable t) {
+                                Intent i = getApplication().getBaseContext().getPackageManager().getLaunchIntentForPackage(getApplication().getBaseContext().getPackageName());
+                                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(i);
                                 AwesomeToast.INSTANCE.error(getApplicationContext(),  "Error: " + t.getLocalizedMessage()).show();
                             }
                         });
@@ -131,6 +138,9 @@ public class OptionCreateRecipe extends AppCompatActivity implements StepperLayo
 
             @Override
             public void onFailure(Call<JsonObject> call, Throwable t) {
+                Intent i = getApplication().getBaseContext().getPackageManager().getLaunchIntentForPackage(getApplication().getBaseContext().getPackageName());
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(i);
                 AwesomeToast.INSTANCE.error(getApplicationContext(),  "Error: " + t.getLocalizedMessage()).show();
             }
         });

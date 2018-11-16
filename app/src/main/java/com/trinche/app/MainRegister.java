@@ -1,6 +1,7 @@
 package com.trinche.app;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -66,6 +67,9 @@ public class MainRegister extends AppCompatActivity implements View.OnClickListe
 
             @Override
             public void onFailure(Call<JsonArray> call, Throwable t) {
+                Intent i = getApplication().getBaseContext().getPackageManager().getLaunchIntentForPackage(getApplication().getBaseContext().getPackageName());
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(i);
                 AwesomeToast.INSTANCE.error(getApplicationContext(),  "Error: " + t.getLocalizedMessage()).show();
             }
         });
@@ -136,6 +140,9 @@ public class MainRegister extends AppCompatActivity implements View.OnClickListe
 
                                                     @Override
                                                     public void onFailure(Call<JsonObject> call, Throwable t) {
+                                                        Intent i = getApplication().getBaseContext().getPackageManager().getLaunchIntentForPackage(getApplication().getBaseContext().getPackageName());
+                                                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                                        startActivity(i);
                                                         AwesomeToast.INSTANCE.error(getApplicationContext(),  "Error: " + t.getLocalizedMessage()).show();
                                                     }
                                                 });

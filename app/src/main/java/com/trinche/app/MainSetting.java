@@ -15,13 +15,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 import com.awesome.dialog.AwesomeCustomDialog;
 import com.awesome.dialog.AwesomeGeneralDialog;
 import com.awesome.dialog.AwesomeProgressDialog;
 import com.awesome.shorty.AwesomeToast;
+import com.google.gson.JsonObject;
+import com.trinche.app.api.ApiAdapter;
 
 import org.jetbrains.annotations.NotNull;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainSetting extends AppCompatActivity {
 
@@ -53,6 +60,9 @@ public class MainSetting extends AppCompatActivity {
 
         @Override
         public boolean onPreferenceClick(Preference preference) {
+
+            SharedPreferences sharedPreferences = getActivity().getSharedPreferences("login_preferences", Context.MODE_PRIVATE);
+            final String TOKEN = sharedPreferences.getString("TOKEN", "");
             switch (preference.getKey()) {
                 case "update_profilePFR":
                     Intent intent = new Intent(getActivity(), SettingProfile.class);
@@ -78,30 +88,60 @@ public class MainSetting extends AppCompatActivity {
                     return true;
 
                 case "delete_accountPFR":
-                    AwesomeToast.INSTANCE.info(getActivity(),  "Pronto ...").show();
                     new AwesomeCustomDialog(getActivity()).setTopColor(Color.parseColor("#FFB475")).setIcon(R.drawable.ic_twotone_delete_48px).setIconTintColor(Color.parseColor("#FFFFFF"))
                             .setTitle("Eliminar cuenta").setMessage("Estas a punto de eliminar tu cuenta, valida tu contraseña para continuar")
                             .setView(R.layout.tiny_dialogdeleteaccount).configureView(new AwesomeCustomDialog.ViewConfigurator() {
                         @Override
                         public void configureView(@NotNull View view) {
+                            final EditText delete_userET = (EditText) view.findViewById(R.id.delete_userET);
                             Button borrarBTN = (Button) view.findViewById(R.id.borrarBTN);
                             borrarBTN.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
-                                    final Dialog progress = new AwesomeProgressDialog(getActivity()).setIcon(R.drawable.ic_twotone_star_border_24px)
+                                    final Dialog progress = new AwesomeProgressDialog(getActivity()).setIcon(R.drawable.ic_twotone_vpn_key_48px).setTopColor(Color.parseColor("#FFFFFF"))
                                             .setTitle("Eliminando").setTopColorRes(R.color.colorPrimary).show();
                                     Handler handler = new Handler();
                                     Runnable runnable = new Runnable() {
                                         @Override
                                         public void run() {
-                                            progress.dismiss();
-                                            Intent i = getActivity().getBaseContext().getPackageManager().getLaunchIntentForPackage(getActivity().getBaseContext().getPackageName());
-                                            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                            startActivity(i);
-                                            AwesomeToast.INSTANCE.success(getActivity(), "Se ha eliminado su cuenta").show();
+                                            final JsonObject jsonObject = new JsonObject();
+                                            jsonObject.addProperty("CONTRASENA", delete_userET.getText().toString());
+                                            Call<JsonObject> call = ApiAdapter.getApiService().deleteUsuario(TOKEN, jsonObject);
+                                            call.enqueue(new Callback<JsonObject>() {
+                                                @Override
+                                                public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                                                    if (response.isSuccessful()) {
+                                                        if (response.body().get("message").getAsString().equals("1")) {
+                                                            SharedPreferences sharedPreferences = getActivity().getSharedPreferences("login_preferences", Context.MODE_PRIVATE);
+                                                            sharedPreferences.edit().clear().apply();
+                                                            progress.dismiss();
+                                                            Intent i = getActivity().getBaseContext().getPackageManager().getLaunchIntentForPackage(getActivity().getBaseContext().getPackageName());
+                                                            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                                            startActivity(i);
+                                                            AwesomeToast.INSTANCE.success(getActivity(), "Se ha eliminado su cuenta").show();
+                                                        } else if (response.body().get("message").getAsString().equals("105")) {
+                                                            progress.dismiss();
+                                                            AwesomeToast.INSTANCE.warning(getActivity(),  "Usuario inválido").show();
+                                                        } else if (response.body().get("message").getAsString().equals("106")) {
+                                                            progress.dismiss();
+                                                            AwesomeToast.INSTANCE.warning(getActivity(),  "Contraseña incorrecta").show();
+                                                        }
+                                                    } else {
+                                                        AwesomeToast.INSTANCE.error(getActivity(),  "Error inesperado").show();
+                                                    }
+                                                }
+
+                                                @Override
+                                                public void onFailure(Call<JsonObject> call, Throwable t) {
+                                                    Intent i = getActivity().getBaseContext().getPackageManager().getLaunchIntentForPackage(getActivity().getBaseContext().getPackageName());
+                                                    i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                                    startActivity(i);
+                                                    AwesomeToast.INSTANCE.error(getActivity(),  "Error: " + t.getLocalizedMessage()).show();
+                                                }
+                                            });
                                         }
                                     };
-                                    handler.postDelayed(runnable, 5000);
+                                    handler.postDelayed(runnable, 2000);
                                 }
                             });
                         }

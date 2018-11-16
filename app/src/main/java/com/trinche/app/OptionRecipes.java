@@ -101,6 +101,9 @@ public class OptionRecipes extends AppCompatActivity {
                                                 @Override
                                                 public void onFailure(Call<JsonArray> call, Throwable t) {
                                                     complete = false;
+                                                    Intent i = getApplication().getBaseContext().getPackageManager().getLaunchIntentForPackage(getApplication().getBaseContext().getPackageName());
+                                                    i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                                    startActivity(i);
                                                     AwesomeToast.INSTANCE.error(getApplicationContext(),  "Error: " + t.getLocalizedMessage()).show();
                                                 }
                                             });
@@ -119,6 +122,9 @@ public class OptionRecipes extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<JsonArray> call, Throwable t) {
+                        Intent i = getApplication().getBaseContext().getPackageManager().getLaunchIntentForPackage(getApplication().getBaseContext().getPackageName());
+                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(i);
                         AwesomeToast.INSTANCE.error(getApplicationContext(),  "Error: " + t.getLocalizedMessage()).show();
                     }
                 });
@@ -168,6 +174,9 @@ public class OptionRecipes extends AppCompatActivity {
                                                 @Override
                                                 public void onFailure(Call<JsonArray> call, Throwable t) {
                                                     complete = false;
+                                                    Intent i = getApplication().getBaseContext().getPackageManager().getLaunchIntentForPackage(getApplication().getBaseContext().getPackageName());
+                                                    i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                                    startActivity(i);
                                                     AwesomeToast.INSTANCE.error(getApplicationContext(),  "Error: " + t.getLocalizedMessage()).show();
                                                 }
                                             });
@@ -186,6 +195,9 @@ public class OptionRecipes extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<JsonArray> call, Throwable t) {
+                        Intent i = getApplication().getBaseContext().getPackageManager().getLaunchIntentForPackage(getApplication().getBaseContext().getPackageName());
+                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(i);
                         AwesomeToast.INSTANCE.error(getApplicationContext(),  "Error: " + t.getLocalizedMessage()).show();
                     }
                 });
@@ -235,7 +247,7 @@ public class OptionRecipes extends AppCompatActivity {
             TextView stars_recipeTV = (TextView) convertView.findViewById(R.id.stars_recipeTV);
             stars_recipeTV.setText(other_recipes.get(position).getAsJsonObject().get("PUNTUACION").getAsString());
             ImageView image_recipeIV = (ImageView) convertView.findViewById(R.id.image_recipeIV);
-            Glide.with(getApplicationContext()).load("http://104.197.2.172:8760/recipe/recipedown/" + other_recipes.get(position).getAsJsonObject().get("ID_RECETA").getAsString()).apply(new RequestOptions().fitCenter().diskCacheStrategy(DiskCacheStrategy.NONE)).into(image_recipeIV);
+            Glide.with(getApplicationContext()).load("http://104.197.2.172/image/recipe/recipedown/" + other_recipes.get(position).getAsJsonObject().get("ID_RECETA").getAsString()).apply(new RequestOptions().fitCenter().diskCacheStrategy(DiskCacheStrategy.NONE)).into(image_recipeIV);
             CardView show_recipeCV = (CardView) convertView.findViewById(R.id.show_recipeCV);
             show_recipeCV.setOnClickListener(new View.OnClickListener() {
                 @Override

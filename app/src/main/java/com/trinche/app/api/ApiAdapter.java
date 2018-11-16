@@ -12,7 +12,8 @@ public class ApiAdapter {
 
     public static ApiService getApiService() {
 
-        String api_url = "http://104.197.2.172:8750/";
+        String api_url = "http://104.197.2.172/data/";
+        //String api_url = "http://104.197.2.172:8750/";
         //String api_url = "http://10.147.19.237:8000/";
         Gson gson = new GsonBuilder().setLenient().create();
 

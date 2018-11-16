@@ -61,9 +61,15 @@
         <activity
             android:name=".OptionBooks"
             android:screenOrientation="portrait" />
-        <activity android:name=".OptionCreateRecipe" />
-        <activity android:name=".MainRecipe" />
-        <activity android:name=".ShowRecipe" />
+        <activity
+            android:name=".OptionCreateRecipe"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".MainRecipe"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ShowRecipe"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

@@ -12,7 +12,8 @@ public class ImageAdapter {
 
     public static ApiService getApiService() {
 
-        String api_url = "http://104.197.2.172:8760/";
+        String api_url = "http://104.197.2.172/image/";
+        //String api_url = "http://104.197.2.172:8760/";
         //String api_url = "http://10.147.19.237:8001/";
         Gson gson = new GsonBuilder().setLenient().create();
 

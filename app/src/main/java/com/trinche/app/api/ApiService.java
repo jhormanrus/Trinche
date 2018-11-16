@@ -64,6 +64,12 @@ public interface ApiService {
             @Body JsonObject json
     );
 
+    @POST("user/delete/")
+    Call<JsonObject> deleteUsuario(
+            @Query("token") String TOKEN,
+            @Body JsonObject json
+    );
+
     @POST("recipe/create/")
     Call<JsonObject> createReceta(
             @Query("token") String TOKEN,

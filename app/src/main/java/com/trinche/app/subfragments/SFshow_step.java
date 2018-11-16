@@ -73,7 +73,7 @@ public class SFshow_step extends Fragment implements BlockingStep, View.OnClickL
             }
             step_ingredientsTV.setText(step_ingredients);
             step_descriptionTV.setText(step.getString("DESCRIPCION"));
-            Glide.with(getActivity()).load("http://104.197.2.172:8760/recipe/stepdown/" + step.getString("ID_PASOS")).apply(new RequestOptions().fitCenter().diskCacheStrategy(DiskCacheStrategy.NONE)).into(step_imageIV);
+            Glide.with(getActivity()).load("http://104.197.2.172/image/recipe/stepdown/" + step.getString("ID_PASOS")).apply(new RequestOptions().fitCenter().diskCacheStrategy(DiskCacheStrategy.NONE)).into(step_imageIV);
         } catch (JSONException e) {
             e.printStackTrace();
         }

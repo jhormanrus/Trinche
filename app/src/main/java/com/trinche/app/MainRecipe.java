@@ -72,8 +72,8 @@ public class MainRecipe extends AppCompatActivity {
                     recipe_starBTN = (ImageButton) findViewById(R.id.recipe_starBTN);
                     recipe_bookBTN = (ImageButton) findViewById(R.id.recipe_bookBTN);
                     show_recipeBTN = (Button) findViewById(R.id.show_recipeBTN);
-                    Glide.with(getApplicationContext()).load("http://104.197.2.172:8760/recipe/recipedown/" + intent.getStringExtra("id_receta")).apply(new RequestOptions().fitCenter().diskCacheStrategy(DiskCacheStrategy.NONE)).into(recipe_imageIV);
-                    Glide.with(getApplicationContext()).load("http://104.197.2.172:8760/user/perfildown/" + response.body().get("ID_USUARIO").getAsString()).apply(new RequestOptions().fitCenter().diskCacheStrategy(DiskCacheStrategy.NONE)).into(recipe_userCIV);
+                    Glide.with(getApplicationContext()).load("http://104.197.2.172/image/recipe/recipedown/" + intent.getStringExtra("id_receta")).apply(new RequestOptions().fitCenter().diskCacheStrategy(DiskCacheStrategy.NONE)).into(recipe_imageIV);
+                    Glide.with(getApplicationContext()).load("http://104.197.2.172/image/user/perfildown/" + response.body().get("ID_USUARIO").getAsString()).apply(new RequestOptions().fitCenter().diskCacheStrategy(DiskCacheStrategy.NONE)).into(recipe_userCIV);
                     recipe_nameTV.setText(response.body().get("NOMBRE").getAsString());
                     recipe_userTV.setText("@"+response.body().get("USUARIO").getAsString());
                     recipe_dateTV.setText(response.body().get("FECHA").getAsString());
@@ -111,6 +111,9 @@ public class MainRecipe extends AppCompatActivity {
 
                         @Override
                         public void onFailure(Call<JsonObject> call, Throwable t) {
+                            Intent i = getApplication().getBaseContext().getPackageManager().getLaunchIntentForPackage(getApplication().getBaseContext().getPackageName());
+                            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(i);
                             AwesomeToast.INSTANCE.error(getApplicationContext(),  "Error: " + t.getLocalizedMessage()).show();
                         }
                     });
@@ -139,6 +142,9 @@ public class MainRecipe extends AppCompatActivity {
 
                                 @Override
                                 public void onFailure(Call<JsonObject> call, Throwable t) {
+                                    Intent i = getApplication().getBaseContext().getPackageManager().getLaunchIntentForPackage(getApplication().getBaseContext().getPackageName());
+                                    i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    startActivity(i);
                                     AwesomeToast.INSTANCE.error(getApplicationContext(),  "Error: " + t.getLocalizedMessage()).show();
                                 }
                             });
@@ -157,6 +163,9 @@ public class MainRecipe extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<JsonObject> call, Throwable t) {
+                Intent i = getApplication().getBaseContext().getPackageManager().getLaunchIntentForPackage(getApplication().getBaseContext().getPackageName());
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(i);
                 AwesomeToast.INSTANCE.error(getApplicationContext(),  "Error: " + t.getLocalizedMessage()).show();
             }
         });

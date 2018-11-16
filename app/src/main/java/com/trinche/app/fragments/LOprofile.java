@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -27,13 +26,10 @@ import com.bumptech.glide.request.RequestOptions;
 import com.google.gson.JsonObject;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.trinche.app.MainSetting;
-import com.trinche.app.OptionBooks;
-import com.trinche.app.OptionRecipes;
 import com.trinche.app.R;
 import com.trinche.app.api.ApiAdapter;
 
 import org.jetbrains.annotations.NotNull;
-import org.w3c.dom.Text;
 
 import at.markushi.ui.CircleButton;
 import retrofit2.Call;
@@ -65,8 +61,8 @@ public class LOprofile extends Fragment implements View.OnClickListener {
         final String TOKEN = sharedPreferences.getString("TOKEN", "");
 
         Glide.get(getActivity()).clearMemory();
-        Glide.with(this).load( "http://104.197.2.172:8760/user/perfildown/" + ID_USUARIO).apply(new RequestOptions().fitCenter().diskCacheStrategy(DiskCacheStrategy.NONE)).into(perfilCIV);
-        Glide.with(this).load("http://104.197.2.172:8760/user/portadadown/" + ID_USUARIO).apply(new RequestOptions().fitCenter().diskCacheStrategy(DiskCacheStrategy.NONE)).into(portadaIV);
+        Glide.with(this).load( "http://104.197.2.172/image/user/perfildown/" + ID_USUARIO).apply(new RequestOptions().fitCenter().diskCacheStrategy(DiskCacheStrategy.NONE)).into(perfilCIV);
+        Glide.with(this).load("http://104.197.2.172/image/user/portadadown/" + ID_USUARIO).apply(new RequestOptions().fitCenter().diskCacheStrategy(DiskCacheStrategy.NONE)).into(portadaIV);
 
         Call<JsonObject> firstcall = ApiAdapter.getApiService().readUsuario(TOKEN);
         firstcall.enqueue(new Callback<JsonObject>() {
@@ -88,6 +84,9 @@ public class LOprofile extends Fragment implements View.OnClickListener {
 
             @Override
             public void onFailure(Call<JsonObject> call, Throwable t) {
+                Intent i = getActivity().getBaseContext().getPackageManager().getLaunchIntentForPackage(getActivity().getBaseContext().getPackageName());
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(i);
                 AwesomeToast.INSTANCE.error(getContext(),  "Error: " + t.getLocalizedMessage()).show();
             }
         });

@@ -38,7 +38,7 @@
 
         <Preference
             android:title="Versión"
-            android:summary="alpha 1.0"
+            android:summary="beta 0.1"
             android:selectable="false"/>
     </PreferenceCategory>
 </PreferenceScreen>

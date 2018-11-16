@@ -89,8 +89,8 @@ public class SettingProfile extends AppCompatActivity implements View.OnClickLis
         final String TOKEN = sharedPreferences.getString("TOKEN", "");
 
         Glide.get(this).clearMemory();
-        Glide.with(this).load("http://104.197.2.172:8760/user/perfildown/" + ID_USUARIO).apply(new RequestOptions().fitCenter().diskCacheStrategy(DiskCacheStrategy.NONE)).into(update_imageCIV);
-        Glide.with(this).load("http://104.197.2.172:8760/user/portadadown/" + ID_USUARIO).apply(new RequestOptions().fitCenter().diskCacheStrategy(DiskCacheStrategy.NONE)).into(update_portadaIV);
+        Glide.with(this).load("http://104.197.2.172/image/user/perfildown/" + ID_USUARIO).apply(new RequestOptions().fitCenter().diskCacheStrategy(DiskCacheStrategy.NONE)).into(update_imageCIV);
+        Glide.with(this).load("http://104.197.2.172/image/user/portadadown/" + ID_USUARIO).apply(new RequestOptions().fitCenter().diskCacheStrategy(DiskCacheStrategy.NONE)).into(update_portadaIV);
 
         Call<JsonArray> call = ApiAdapter.getApiService().readallCountry();
         call.enqueue(new Callback<JsonArray>() {
@@ -130,6 +130,9 @@ public class SettingProfile extends AppCompatActivity implements View.OnClickLis
 
                         @Override
                         public void onFailure(Call<JsonObject> call, Throwable t) {
+                            Intent i = getApplication().getBaseContext().getPackageManager().getLaunchIntentForPackage(getApplication().getBaseContext().getPackageName());
+                            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(i);
                             AwesomeToast.INSTANCE.error(getApplicationContext(),  "Error: " + t.getLocalizedMessage()).show();
                         }
                     });
@@ -140,6 +143,9 @@ public class SettingProfile extends AppCompatActivity implements View.OnClickLis
 
             @Override
             public void onFailure(Call<JsonArray> call, Throwable t) {
+                Intent i = getApplication().getBaseContext().getPackageManager().getLaunchIntentForPackage(getApplication().getBaseContext().getPackageName());
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(i);
                 AwesomeToast.INSTANCE.error(getApplicationContext(),  "Error: " + t.getLocalizedMessage()).show();
             }
         });
@@ -195,6 +201,9 @@ public class SettingProfile extends AppCompatActivity implements View.OnClickLis
 
                                                 @Override
                                                 public void onFailure(Call<JsonObject> call, Throwable t) {
+                                                    Intent i = getApplication().getBaseContext().getPackageManager().getLaunchIntentForPackage(getApplication().getBaseContext().getPackageName());
+                                                    i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                                    startActivity(i);
                                                     AwesomeToast.INSTANCE.error(getApplicationContext(),  "Error: " + t.getLocalizedMessage()).show();
                                                 }
                                             });
@@ -266,6 +275,9 @@ public class SettingProfile extends AppCompatActivity implements View.OnClickLis
 
                                                     @Override
                                                     public void onFailure(Call<JsonObject> call, Throwable t) {
+                                                        Intent i = getApplication().getBaseContext().getPackageManager().getLaunchIntentForPackage(getApplication().getBaseContext().getPackageName());
+                                                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                                        startActivity(i);
                                                         AwesomeToast.INSTANCE.error(getApplicationContext(),  "Error: " + t.getLocalizedMessage()).show();
                                                     }
                                                 });
@@ -285,6 +297,9 @@ public class SettingProfile extends AppCompatActivity implements View.OnClickLis
 
                                                     @Override
                                                     public void onFailure(Call<JsonObject> call, Throwable t) {
+                                                        Intent i = getApplication().getBaseContext().getPackageManager().getLaunchIntentForPackage(getApplication().getBaseContext().getPackageName());
+                                                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                                        startActivity(i);
                                                         AwesomeToast.INSTANCE.error(getApplicationContext(),  "Error: " + t.getLocalizedMessage()).show();
                                                     }
                                                 });
@@ -320,6 +335,9 @@ public class SettingProfile extends AppCompatActivity implements View.OnClickLis
                                                 }
                                                 @Override
                                                 public void onFailure(Call<JsonObject> call, Throwable t) {
+                                                    Intent i = getApplication().getBaseContext().getPackageManager().getLaunchIntentForPackage(getApplication().getBaseContext().getPackageName());
+                                                    i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                                    startActivity(i);
                                                     AwesomeToast.INSTANCE.error(getApplicationContext(),  "Error: " + t.getLocalizedMessage()).show();
                                                 }
                                             });

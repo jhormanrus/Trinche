@@ -207,6 +207,9 @@ public class SFstep_create_2 extends Fragment implements BlockingStep, View.OnCl
 
                             @Override
                             public void onFailure(Call<JsonArray> call, Throwable t) {
+                                Intent i = getActivity().getBaseContext().getPackageManager().getLaunchIntentForPackage(getActivity().getBaseContext().getPackageName());
+                                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(i);
                                 AwesomeToast.INSTANCE.error(getActivity().getApplicationContext(),  "Error: " + t.getLocalizedMessage()).show();
                             }
                         });

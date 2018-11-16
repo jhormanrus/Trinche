@@ -52,6 +52,9 @@ public class SFcategories extends Fragment {
 
             @Override
             public void onFailure(Call<JsonArray> call, Throwable t) {
+                Intent i = getActivity().getBaseContext().getPackageManager().getLaunchIntentForPackage(getActivity().getBaseContext().getPackageName());
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(i);
                 AwesomeToast.INSTANCE.error(getContext(),  "Error: " + t.getLocalizedMessage()).show();
             }
         });

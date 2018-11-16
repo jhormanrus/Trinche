@@ -76,17 +76,6 @@ public class LOhome extends Fragment implements View.OnClickListener, MaterialSe
                                         System.out.println("after");
                                     }
                                 });
-                                /*LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                                RVresponseAdapter adapter = new RVresponseAdapter(inflater);
-
-                                List<Usuario> suggestions = new ArrayList<>();
-                                for (int i = 1; i < 11; i++) {
-                                    suggestions.add(new Usuario("Corki" + i));
-                                    System.out.println(i);
-                                }
-
-                                adapter.setSuggestions(suggestions);
-                                search_userMSB.setCustomSuggestionAdapter(adapter);*/
                             }
                         }).configureBottomView(new AwesomeSwitchableDialog.bottomViewConfigurator() {
                             @Override

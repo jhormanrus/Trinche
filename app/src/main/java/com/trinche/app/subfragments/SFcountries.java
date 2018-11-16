@@ -52,6 +52,9 @@ public class SFcountries extends Fragment {
 
             @Override
             public void onFailure(Call<JsonArray> call, Throwable t) {
+                Intent i = getActivity().getBaseContext().getPackageManager().getLaunchIntentForPackage(getActivity().getBaseContext().getPackageName());
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(i);
                 AwesomeToast.INSTANCE.error(getContext(),  "Error: " + t.getLocalizedMessage()).show();
             }
         });
@@ -89,7 +92,7 @@ public class SFcountries extends Fragment {
             TextView name_countryTV = (TextView) convertView.findViewById(R.id.name_countryTV);
             name_countryTV.setText(countries.get(position).getAsJsonObject().get("NOMBRE").getAsString());
             ImageView image_countryIV = (ImageView) convertView.findViewById(R.id.image_countryTV);
-            GlideApp.with(SFcountries.this).load(Uri.parse("http://104.197.2.172:8760/country/image/" + countries.get(position).getAsJsonObject().get("IMAGEN").getAsString())).into(image_countryIV);
+            GlideApp.with(SFcountries.this).load(Uri.parse("http://104.197.2.172/image/country/image/" + countries.get(position).getAsJsonObject().get("IMAGEN").getAsString())).into(image_countryIV);
             countrieCV = (CardView) convertView.findViewById(R.id.countrieCV);
             countrieCV.setOnClickListener(new View.OnClickListener() {
                 @Override
